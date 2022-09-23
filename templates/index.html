@@ -1,36 +1,278 @@
 <!DOCTYPE html>
     <head>
-        <title>Alumination</title>
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/add-to-calendar-button@1/assets/css/atcb.min.css">
+
+      <title>Alumination</title>
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/add-to-calendar-button@1/assets/css/atcb.min.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+      <style>
+
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Bree+Serif&family=EB+Garamond:ital,wght@0,500;1,800&display=swap');
+
+
+body {
+background: #DFC2F2;
+	background-image: linear-gradient( to right, #ffffb3,#ffe6e6);
+	background-attachment: fixed;	
+	background-size: cover;
+  
+	}
+
+#container{
+	box-shadow: 0 15px 30px 1px grey;
+	background: rgba(255, 255, 255, 0.90);
+	text-align: center;
+	border-radius: 5px;
+	overflow: hidden;
+	margin: 5em auto;
+	height: 350px;
+	width: 700px;
+  
+	
+}
+
+
+
+.product-details {
+	position: relative;
+	text-align: left;
+	overflow: hidden;
+	padding: 30px;
+	height: 100%;
+	float: left;
+	width: 40%;
+
+}
+
+#container .product-details h1{
+	font-family: 'Bebas Neue', cursive;
+	display: inline-block;
+	position: relative;
+	font-size: 30px;
+	color: #344055;
+	margin: 0;
+	
+}
+
+#container .product-details h1:before{
+	position: absolute;
+	content: '';
+	right: 0%; 
+	top: 0%;
+	transform: translate(25px, -15px);
+	font-family: 'Bree Serif', serif;
+	display: inline-block;
+	background: #ffe6e6;
+	border-radius: 5px;
+	font-size: 14px;
+	padding: 5px;
+	color: white;
+	margin: 0;
+	animation: chan-sh 6s ease infinite;
+
+}
+
+
+
+	
+
+
+.hint-star {
+	display: inline-block;
+	margin-left: 0.5em;
+	color: gold;
+	width: 50%;
+}
+
+
+#container .product-details > p {
+font-family: 'EB Garamond', serif;
+	text-align: center;
+	font-size: 18px;
+	color: #7d7d7d;
+	
+}
+.control{
+	position: absolute;
+	bottom: 20%;
+	left: 22.8%;
+	
+}
+.btn {
+
+	transform: translateY(0px);
+	transition: 0.3s linear;
+	background:  #809fff;
+	border-radius: 5px;
+  position: relative;
+  overflow: hidden;
+	cursor: pointer;
+	outline: none;
+	border: none;
+	color: #eee;
+	padding: 0;
+	margin: 0;
+	
+}
+
+.btn:hover{transform: translateY(-6px);
+	background: #1a66ff;}
+
+.btn span {
+	font-family: 'Farsan', cursive;
+	transition: transform 0.3s;
+	display: inline-block;
+  padding: 10px 20px;
+	font-size: 1.2em;
+	margin:0;
+	
+}
+.btn .price, .shopping-cart{
+	background: #333;
+	border: 0;
+	margin: 0;
+}
+
+.btn .price {
+	transform: translateX(-10%); padding-right: 15px;
+}
+
+.btn .shopping-cart {
+	transform: translateX(-100%);
+  position: absolute;
+	background: #333;
+	z-index: 1;
+  left: 0;
+  top: 0;
+}
+
+.btn .buy {z-index: 3; font-weight: bolder;}
+
+.btn:hover .price {transform: translateX(-110%);}
+
+.btn:hover .shopping-cart {transform: translateX(0%);}
+
+
+
+.product-image {
+	transition: all 0.3s ease-out;
+	display: inline-block;
+	position: relative;
+	overflow: hidden;
+	height: 100%;
+	width: 45%;
+	display: inline-block;
+}
+
+#container img {width: 100%;height: 100%;}
+
+.info {
+    background: rgba(27, 26, 26, 0.9);
+    font-family: 'Bree Serif', serif;
+    transition: all 0.3s ease-out;
+    transform: translateX(-100%);
+    position: absolute;
+    line-height: 1.8;
+    text-align: left;
+    font-size: 105%;
+    cursor: no-drop;
+    color: #FFF;
+    height: 100%;
+    width: 100%;
+    left: 0;
+    top: 0;
+}
+
+.info h2 {text-align: center}
+.product-image:hover .info{transform: translateX(0);}
+
+.info ul li{transition: 0.3s ease;}
+.info ul li:hover{transform: translateX(50px) scale(1.3);}
+
+.product-image:hover img {transition: all 0.3s ease-out;}
+.product-image:hover img {transform: scale(1.2, 1.2);}
+
+      </style>
+
     </head>
     <body>
 
-        <div class="atcb" style="display:none;">
-            {
-              "name":"Blockchain Hackathon",
-              "description":"Win the prize of 3000 4000",
-              "startDate":"2022-02-21",
-              "endDate":"2022-03-24",
-              "startTime":"10:13",
-              "endTime":"17:57",
-              "location":"VMCC",
-              "label":"Add to Calendar",
-              "options":[
-                "Apple",
-                "Google",
-                "iCal",
-                "Microsoft365",
-                "MicrosoftTeams",
-                "Outlook.com",
-                "Yahoo"
-              ],
-              "timeZone":"Europe/Berlin",
-              "inline":true,
-              "iCalFileName":"Reminder-Event"
-            }
-          </div>
+      <div id="container">	
+        <div class="product-details">
+        <h1>Alumination</h1>
+          
+            <p class="information">Come to Alumination to create a glamorous and joyfull memory of your life with your alumni and your love</p>    
+      
+            <div class="atcb" style="display:none;">
+              {
+                "name":"Blockchain Hackathon",
+                "description":"Win the prize of 3000 4000",
+                "startDate":"2022-02-21",
+                "endDate":"2022-03-24",
+                "startTime":"10:13",
+                "endTime":"17:57",
+                "location":"VMCC",
+                "label":"Add to Calendar",
+                "options":[
+                  "Apple",
+                  "Google",
+                  "iCal",
+                  "Microsoft365",
+                  "MicrosoftTeams",
+                  "Outlook.com",
+                  "Yahoo"
+                ],
+                "timeZone":"Europe/Berlin",
+                "inline":true,
+                "iCalFileName":"Reminder-Event"
+              }
+            </div>
+      
+            <div class="control">
+        <button class="btn">
+         <span class="price">Register</span>
+         <span class="shopping-cart">Now</span>
+       </button>
+        
+      </div>
+            
+      </div>
+        
+      <div class="product-image">
+        
+        <img src="https://images.unsplash.com/photo-1606830733744-0ad778449672?ixid=MXwxMjA3fDB8MHxzZWFyY2h8Mzl8fGNocmlzdG1hcyUyMHRyZWV8ZW58MHx8MHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="">
+        
+      
+      <div class="info">
+        <h2>Events</h2>
+        <ul>
+          <li><strong>Blockchain</strong>Hackathon</li>
+          <li><strong>Break</strong>The Ice</li>
+          <li><strong>Shadow</strong>Night</li>
+          <li><strong>Incentive</strong>Machaxx</li>
+          
+        </ul>
+      </div>
+      </div>
+      
+      </div>
+
+          <div id="map"></div>
+          <iframe src="https://www.google.com/maps/embed?pb=!1m26!1m12!1m3!1d5486.967501056844!2d72.90907818107429!3d19.13310801417758!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m11!3e6!4m5!1s0x3be7b80705fb82d1%3A0x8ca0bde59b15114f!2s2%2C%20Students&#39;%20Residential%20Zone%2C%20IIT%20Area%2C%20Powai%2C%20Mumbai%2C%20Maharashtra%20400076!3m2!1d19.136076!2d72.90727199999999!4m3!3m2!1d19.1319254!2d72.91435899999999!5e0!3m2!1sen!2sin!4v1663959375523!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
 
         <script src="https://cdn.jsdelivr.net/npm/add-to-calendar-button@1" async defer></script>
+    
+        <script>
 
+          // function initMap() {
+          //   var location = {lat: 19.135984, lng: 72.907269};
+          //   var map = new google.maps.Map(document.getElementById("map"), {
+          //     zoom: 4,
+          //     center: location,
+
+          //   })
+          // }
+
+        </script>
+      
     </body>
 </html>
