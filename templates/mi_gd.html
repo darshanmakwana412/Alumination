@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MI/GD</title>
+</head>
+<body>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+    <select name="mode" id="mode">
+        <option value="online">Online</option>
+        <option value="offline">Offline</option>
+    </select>
+    <select name="pref1" id="pref1">
+        <option value="1">1</option>
+        <option value="2">2</option>
+    </select>
+    <select name="pref2" id="pref2">
+        <option value="1">1</option>
+        <option value="2">2</option>
+    </select>
+    <select name="pref3" id="pref3">
+        <option value="1">1</option>
+        <option value="2">2</option>
+    </select>
+    <select name="date" id="date">
+        <option value="1">1</option>
+        <option value="2">2</option>
+    </select>
+    <input type="file" name="resume" id="resume" />
+    <button type="submit" class="submit">SUBMIT</button>
+</form>
+</body>
+</html>
