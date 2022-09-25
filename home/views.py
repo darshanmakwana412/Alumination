@@ -1,14 +1,109 @@
 from django.contrib.auth import login, logout
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
-from .models import Event, Profile, mi_gd
+from .models import Event, Profile, mi_gd, EventsAttending
+from django.contrib.auth.models import User
 import numpy as np
 import pandas as pd
+import random
+from twilio.rest import Client
 import os
-from pydrive.auth import GoogleAuth
-from pydrive.drive import GoogleDrive
-gauth = GoogleAuth()           
-drive = GoogleDrive(gauth)
+# from pydrive.auth import GoogleAuth
+# from pydrive.drive import GoogleDrive
+# gauth = GoogleAuth()           
+# drive = GoogleDrive(gauth)
+
+
+def generateOtp():
+    opt = random.random()*1000000
+    otp = int(otp)
+    return otp
+
+def sendOtp(otp, mobno, rollno):
+    email = str(rollno) + "@iitb.ac.in"
+    mob = "+91" + str(mobno)
+    # send_mail("Thank you for Bonding with SARC", "Your OTP for Registering in SARC is "+otp, "web.sarc.iitb@gmail.com", [email, ], fail_silently=False)
+    account_sid = "ACde1678c7880c7ca7b06306b36071db1f"
+    auth_token = '1a5ea517ab694ce60b0010bc4a739d27'
+    client = Client(account_sid, auth_token)
+
+    message = client.messages.create(
+    body='Your OTP for SARC login is ' + str(otp),
+    from_='+19289166866',
+    to=mob
+    )
+
+
+def loginView(request):
+
+    if request.method == 'POST':
+        if request.user.is_authenticated:
+            return redirect('index')
+        
+        rollno = request.POST.get('rollno')
+        mobno = request.POST.get('mobno')
+        user = User.objects.filter(username = rollno)
+        if user is None:
+            context = {'message': 'Profile not found, Please Register'}
+            return render(request, 'login.html', context)
+        else:
+            otp = generateOtp()
+            sendOtp(otp=otp, mobno=mobno)
+            request.session['rollno'] = rollno
+            request.session['mobno'] = mobno
+            request.session['otp'] = otp
+            return redirect(request, 'otp.html')
+
+    return render(request, 'login.html')
+
+
+def otpview(request):
+    if request.method.POST:
+        otpin = request.POST.get('otp')
+        rollno = request.session['rollno']
+        mobno = request.session['mobno']
+        otp = request.session['otp']
+        if(otpin == otp):
+            user = User.objects.filter(username = rollno)
+            login(request, user)
+        else:
+            context = {'message' : 'Incorrect OTP' }
+            return render(request, 'otpview.html', context)
+    else:
+        return render(request, 'otpview.html')
+
+
+def registerView(request):
+
+    if request.method == 'POST':
+        email = request.POST.get('email')
+        name = request.POST.get('name')
+        password = request.POST.get('password')
+        rollno = request.POST.get('rollno')
+        department = request.POST.get('department')
+        degree = request.POST.get('degree')
+        contact = request.POST.get('contact')
+        p_email = request.POST.get('p_email')
+
+        check_user = User.objects.filter(username=rollno).first()
+        if check_user:
+            context = {'message': 'User already exists'}
+            return render(request, 'register.html', context)
+        if not email.split('@')[1]=='iitb.ac.in':
+            context = {'message': 'Please register using your LDAP ID'}
+            return render(request, 'register.html', context)
+
+        # send_mail("Thank you for Bonding with SARC", "Your OTP for Registering in SARC is 345789", "web.sarc.iitb@gmail.com", [email, ], fail_silently=False)
+
+        user = User(username=rollno, password=password)
+        profile = Profile(user=user, name=name, password=password, rollno=rollno, department=department, degree=degree,contact=contact, p_email=p_email)
+        eventuser = EventsAttending(roll_no_=rollno)
+        user.save()
+        profile.save()
+        eventuser.save()
+        return redirect('login')
+    return render(request, 'register.html')
+
 
 def addEvents(request):
 
@@ -33,35 +128,7 @@ def index(request):
 
     return render(request, "index.html", context)
 
-def loginView(request):
 
-    if request.method == 'POST':
-        if request.user.is_authenticated:
-            return redirect('index')
-
-        _name = request.POST.get('name')
-
-        user = Profile.objects.filter(user=request.user)
-
-        if user is None:
-            context = {'message': 'Profile not found'}
-            return render(request, 'login.html', context)
-
-        if _name == user.name_ :
-            login(request, user)
-            context = {'name': user.name_}
-            return render(request, 'login.html', context)
-
-        return render(request, 'login.html')
-        
-    return render(request, 'login.html')
-
-def registerView(request):
-    if request.method == 'POST':
-        
-        _name = request.POST.get('name')
-
-    return render(request, 'register.html')
 
 def logoutView(request):
     logout(request)
@@ -94,3 +161,35 @@ def migd(request):
         #gfile.SetContentFile('resume')
         # gfile.Upload() # Upload the file.
     return render(request, 'mi_gd.html')  
+
+
+
+# def loginView(request):
+
+#     if request.method == 'POST':
+#         if request.user.is_authenticated:
+#             return redirect('index')
+
+#         _name = request.POST.get('name')
+
+#         user = Profile.objects.filter(user=request.user)
+
+#         if user is None:
+#             context = {'message': 'Profile not found'}
+#             return render(request, 'login.html', context)
+
+#         if _name == user.name_ :
+#             login(request, user)
+#             context = {'name': user.name_}
+#             return render(request, 'login.html', context)
+
+#         return render(request, 'login.html')
+        
+#     return render(request, 'login.html')
+
+# def registerView(request):
+#     if request.method == 'POST':
+        
+#         _name = request.POST.get('name')
+
+#     return render(request, 'register.html')
