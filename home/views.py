@@ -13,6 +13,8 @@ import os
 # gauth = GoogleAuth()           
 # drive = GoogleDrive(gauth)
 
+def teamPage(request):
+    return render(request, 'TeamPage.html')
 
 def generateOtp():
     num = random.random()*1000000
