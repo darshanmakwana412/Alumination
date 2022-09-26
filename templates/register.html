@@ -1,0 +1,49 @@
+<form method="post" action="{% url 'register' %}">
+    {% csrf_token %}
+    <h1  style="text-align: center; color:#2C559B; font-size: 50px;">REGISTER</h1><br>
+    {% if message %}
+        <div style="color: red; font-size: 20px; font-weight: bold;">{{message}}</div><br>
+    {% endif %}
+   
+    <input type="text" name="name" placeholder="Full Name" required>
+    <input type="text" name="rollno" placeholder="Roll number" required>
+    <select name="department" id="department">
+        <option selected style="font-family: 'helvetica','Times New Roman';">Department*</option>
+    <option value="Aerospace">Aerospace</option>
+    <option value="BSBE">BSBE</option>
+    <option value="Chemical">Chemical</option>
+    <option value="Civil">Civil</option>
+    <option value="CSE">CSE</option>
+    <option value="Earth Science">Earth Science</option>
+    <option value="Electrical">Electrical</option>
+    <option value="Energy">Energy</option>
+    <option value="ESED">ESED</option>
+    <option value="HSS">HSS</option>
+    <option value="IEOR">IEOR</option>
+    <option value="MEMS">MEMS</option>
+    <option value="Mechanical">Mechanical</option>
+    <option value="Chemistry">Chemistry</option>
+    <option value="Mathematics">Mathematics</option>
+    <option value="Physics">Physics/EP</option>
+    <option value="Management">School of Management</option>
+
+    <option value="Other">Other</option>
+</select>
+
+
+<select name="degree" id="department">
+        <option selected>Degree*</option>
+    <option value="btech">B.Tech</option>
+    <option value="bs">BS</option>
+    <option value="mtech">M.Tech</option>
+    <option value="DD">Dual Degree</option>
+    <option value="msc">M.Sc</option>
+    <option value="phd">PhD</option>
+    <option value="other">Other</option>
+</select>
+    <input type="email" name="email" placeholder="LDAP email" required>
+    <input type="email" name="p_email" placeholder="Personal email" required>
+    <input type="text" name="contact" placeholder="Contact No." required>
+    <button class="reg">Register</button>
+    <p class="message">Already registered? <a href="{% url 'login' %}" style="color: #75A876">Login</a></p>
+</form>

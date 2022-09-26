@@ -15,8 +15,8 @@ import os
 
 
 def generateOtp():
-    opt = random.random()*1000000
-    otp = int(otp)
+    num = random.random()*1000000
+    otp = int(num)
     return otp
 
 def sendOtp(otp, mobno, rollno):
@@ -36,23 +36,32 @@ def sendOtp(otp, mobno, rollno):
 
 def loginView(request):
 
-    if request.method == 'POST':
-        if request.user.is_authenticated:
+    if request.user.is_authenticated:
             return redirect('index')
-        
+    if request.method == 'POST':
+        if 'rollno' in request.session:
+                otp = request.POST.get('otp')
+                print(str(otp))
+                if (str(otp) == str(request.session['otp'])):
+                    user = User.objects.filter(username = request.session['rollno']).first()
+                    login(request, user)
+                    print("Success")
+                    return render(request, 'index.html')
+                else: 
+                    context = {'message' : 'Wrong otp'}
+                    return render(request, 'login.html', context)                 
         rollno = request.POST.get('rollno')
-        mobno = request.POST.get('mobno')
         user = User.objects.filter(username = rollno)
-        if user is None:
+        if not user :
             context = {'message': 'Profile not found, Please Register'}
             return render(request, 'login.html', context)
         else:
             otp = generateOtp()
-            sendOtp(otp=otp, mobno=mobno)
+            print(otp)
+            # sendOtp(otp=otp, mobno=user.username)
             request.session['rollno'] = rollno
-            request.session['mobno'] = mobno
             request.session['otp'] = otp
-            return redirect(request, 'otp.html')
+            return render(request, 'login.html')
 
     return render(request, 'login.html')
 
@@ -74,18 +83,19 @@ def otpview(request):
 
 
 def registerView(request):
-
+    
+    if request.user.is_authenticated:
+            return redirect('index')
     if request.method == 'POST':
         email = request.POST.get('email')
         name = request.POST.get('name')
-        password = request.POST.get('password')
         rollno = request.POST.get('rollno')
         department = request.POST.get('department')
         degree = request.POST.get('degree')
         contact = request.POST.get('contact')
         p_email = request.POST.get('p_email')
 
-        check_user = User.objects.filter(username=rollno).first()
+        check_user = Profile.objects.filter(rollno=rollno).first()
         if check_user:
             context = {'message': 'User already exists'}
             return render(request, 'register.html', context)
@@ -95,9 +105,9 @@ def registerView(request):
 
         # send_mail("Thank you for Bonding with SARC", "Your OTP for Registering in SARC is 345789", "web.sarc.iitb@gmail.com", [email, ], fail_silently=False)
 
-        user = User(username=rollno, password=password)
-        profile = Profile(user=user, name=name, password=password, rollno=rollno, department=department, degree=degree,contact=contact, p_email=p_email)
-        eventuser = EventsAttending(roll_no_=rollno)
+        user = User(username=rollno, password=contact)
+        profile = Profile(user=user, name=name, password=contact, rollno=rollno, department=department, degree=degree,contact=contact, p_email=p_email)
+        eventuser = EventsAttending(roll_no=rollno)
         user.save()
         profile.save()
         eventuser.save()
@@ -121,7 +131,7 @@ def registerView(request):
 #     return redirect(index)
 
 def index(request):
-
+    # del request.session['rollno']
     # context = {
     #     'events': Event.objects.filter()
     # }
