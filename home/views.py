@@ -95,22 +95,31 @@ def registerView(request):
         contact = request.POST.get('contact')
         p_email = request.POST.get('p_email')
 
-        check_user = Profile.objects.filter(rollno=rollno).first()
-        if check_user:
-            context = {'message': 'User already exists'}
-            return render(request, 'register.html', context)
         if not email.split('@')[1]=='iitb.ac.in':
             context = {'message': 'Please register using your LDAP ID'}
             return render(request, 'register.html', context)
 
-        # send_mail("Thank you for Bonding with SARC", "Your OTP for Registering in SARC is 345789", "web.sarc.iitb@gmail.com", [email, ], fail_silently=False)
-
-        user = User(username=rollno, password=contact)
-        profile = Profile(user=user, name=name, password=contact, rollno=rollno, department=department, degree=degree,contact=contact, p_email=p_email)
-        eventuser = EventsAttending(roll_no=rollno)
-        user.save()
-        profile.save()
-        eventuser.save()
+        check_user = User.objects.filter(username=rollno).first()
+        if check_user:
+            check_user.password = contact
+            puser = Profile.objects.filter(rollno = rollno).first()
+            puser.name = name
+            puser.password = contact
+            puser.dpartment = department
+            puser.degree = degree
+            puser.contact = contact
+            puser.p_email = p_email
+            puser.user = check_user
+            puser.save()
+            check_user.save()
+            return render(request, 'register.html')
+        else:         
+            user = User(username=rollno, password=contact)
+            profile = Profile(user=user, name=name, password=contact, rollno=rollno, department=department, degree=degree,contact=contact, p_email=p_email)
+            eventuser = EventsAttending(roll_no=rollno)
+            user.save()
+            profile.save()
+            eventuser.save()
         return redirect('login')
     return render(request, 'register.html')
 

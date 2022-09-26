@@ -5,10 +5,10 @@
       {% endif %} 
       {% csrf_token %}
       <h1 style="text-align: center; color:#2C559B; font-size: 50px;">LOGIN</h1><br>
-      <input type="text" name="rollno" placeholder="IITB Rollnumber" required>
+      <input type="text" name="rollno" placeholder="IITB Rollnumber" value="{{request.session.rollno}}" required>
       <button class="reg">Login</button>
       <p class="message">Not registered? <a href="{% url 'register' %}" style="color: #75A876;">Register</a></p>
       {% if request.session.rollno %}
-      <input type="text" name="otp" placeholder="Full Name" required>
+      <input type="text" name="otp" placeholder="Enter OTP" required>
       {% endif %}
     </form>
