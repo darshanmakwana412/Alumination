@@ -1,7 +1,7 @@
 from django.contrib.auth import login, logout
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
-from .models import Profile, mi_gd, EventsAttending
+from .models import Profile, mi_gd, EventsAttending, Event_url
 from django.contrib.auth.models import User
 import numpy as np
 import pandas as pd
@@ -170,7 +170,38 @@ def migd(request):
         #gfile = drive.CreateFile({'parents': [{'id': '1TgjDODLKJ8YFTs8PBqigcwR0RsXN4o7O'}]})
         #gfile.SetContentFile('resume')
         # gfile.Upload() # Upload the file.
-    return render(request, 'mi_gd.html')  
+    return render(request, 'mi_gd.html')
+
+# Events + questions
+def event_url(request):
+    if request.method=="POST":
+        roll_no=request.POST.get("rollno")
+        question=request.POST.get("question")
+        url=request.get_host+request.path
+        url_string=url.toString()
+        index = url_string.rfind('/')
+        event=url_string[index+1:] 
+        data= Event_url(roll_no=roll_no,event=event, question=question)
+        data.save() 
+    return  render(request, "qna.html")
+
+def bth(request):
+    userevent = EventsAttending.objects.filter(roll_no = request.user.username).first()
+    context = {'eventstate' : userevent.beyond_the_horizon }
+    return render(request, 'bth.html', context ) 
+
+def eventState(request, event, state):
+    print("Hello")
+    print(event + " "+ state )
+    rollno = request.user.username
+    print(rollno)
+    userevent = EventsAttending.objects.filter(roll_no = rollno).first()
+    setattr(userevent, event, state)
+    # userevent[event] = int(state)
+    userevent.save()
+
+    return HttpResponseRedirect(request.META['HTTP_REFERER'])
+
 
 
 

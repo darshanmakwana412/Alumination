@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QNA</title>
+</head>
+<body>
+    <div class="form">
+    <form method="post">
+        {% csrf_token %}
+      <input name="rollno" type="text" placeholder="rollno"/><br>
+      <input name="question" type="text" placeholder="question"/><br>
+      <button type="submit" class="submit">SUBMIT</button>
+    </div>
+    </form>
+</body>
+</html>
