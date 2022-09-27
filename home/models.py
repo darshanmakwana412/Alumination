@@ -51,6 +51,10 @@ class mi_gd(models.Model):
     date = models.CharField(default=False, max_length=100)
     resume = models.FileField(upload_to='resume', blank=True)
 
+# question taken for 
+class feedback_question(models.Model):
+    feedback_question=models.CharField(max_length=100)
+    
 class Event_url(models.Model):
     roll_no=models.PositiveBigIntegerField
     event=models.CharField(max_length=100)

@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect, HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from .models import Profile, mi_gd, EventsAttending, Event_url
 from django.contrib.auth.models import User
+from django.core.mail import send_mail
 import numpy as np
 import pandas as pd
 import random
@@ -186,4 +187,3 @@ def eventState(request, event, state):
     setattr(userevent, event, state)
     userevent.save()
 
-    return HttpResponseRedirect(request.META['HTTP_REFERER'])
