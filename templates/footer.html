@@ -1,0 +1,312 @@
+{" % load static % "}
+<!DOCTYPE html>
+<html lang="en">
+    <link rel="stylesheet" href="{% static 'css/footer.css' %}">
+ <style>
+  .alumination {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background-color: black;
+    background-image: url('img/fantasy.png');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: 100% 100%;
+}
+.logo {
+    position: absolute;
+    /* transform: translateY(-50px); */
+    /* margin-top: 25%;
+    margin-left: 25%;
+margin */
+top: 50%;
+left: 25%;
+}
+
+
+/* footer css */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+* {
+margin: 0;
+padding: 0;
+font-family: "Poppins", sans-serif;
+box-sizing: border-box;
+}
+
+body {
+background: #eef8ff;
+}
+
+footer {
+width: 100%;
+position: absolute;
+bottom: 0;
+/* background: linear-gradient(to right, #ff7f59, #800000); */
+background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+animation: gradient 15s ease infinite;
+background-size: 400% 400%;
+color: #fff;
+padding: 100px 0 30px;
+/* border-top-left-radius: 125px; */
+font-size: 13px;
+line-height: 20px;
+}
+@keyframes gradient {
+0% {
+background-position: 0% 50%;
+}
+50% {
+background-position: 100% 50%;
+}
+100% {
+background-position: 0% 50%;
+}
+}
+
+.row {
+width: 85%;
+margin: auto;
+display: flex;
+flex-wrap: wrap;
+align-items: flex-start;
+justify-content: space-between;
+}
+
+.col {
+flex-basis: 25%;
+padding: 10px;
+}
+
+.col:nth-child(2),
+.col:nth-child(3) {
+flex-basis: 15%;
+}
+.heading {
+margin-bottom: 15px;
+font-size: 30px;
+}
+.social {
+display: flex;
+gap: 20px;
+}
+.col3 ion-icon {
+
+font-size: 40px;
+}
+.social a:hover ion-icon {
+color: #5ac1d8;
+}
+
+
+
+.logo {
+width: 80px;
+margin-bottom: 30px;
+}
+
+.col h3 {
+width: fit-content;
+margin-bottom: 40px;
+position: relative;
+}
+
+.email-id {
+width: fit-content;
+border-bottom: 1px solid #ccc;
+margin: 20px 0;
+}
+
+ul li {
+list-style: none;
+margin-bottom: 12px;
+}
+
+ul li a {
+text-decoration: none;
+color: #fff;
+}
+
+form {
+padding-bottom: 15px;
+display: flex;
+align-items: center;
+justify-content: space-between;
+border-bottom: 1px solid #ccc;
+margin-bottom: 50px;
+}
+
+form .far {
+font-size: 18px;
+margin-right: 10px;
+}
+
+form input {
+width: 100%;
+background: transparent;
+color: #ccc;
+border: 0;
+outline: none;
+}
+
+form button {
+background: transparent;
+border: 0;
+outline: none;
+cursor: pointer;
+}
+
+form button .fas {
+font-size: 16px;
+color: #ccc;
+}
+
+.social-icons .fab {
+width: 40px;
+height: 40px;
+border-radius: 50%;
+text-align: center;
+line-height: 40px;
+font-size: 20px;
+color: #000;
+background: #fff;
+margin-right: 15px;
+cursor: pointer;
+}
+
+hr {
+width: 90%;
+border: 0;
+border-bottom: 1px solid #ccc;
+margin: 20px auto;
+}
+
+.copyright {
+text-align: center;
+}
+
+.underline {
+width: 100%;
+height: 5px;
+background: #767676;
+border-radius: 3px;
+position: absolute;
+top: 25px;
+left: 0;
+}
+
+.underline span {
+width: 15px;
+height: 100%;
+background: #fff;
+border: 3px;
+position: absolute;
+top: 0;
+left: 10px;
+animation: moving 2s linear infinite;
+}
+
+@keyframes moving {
+0% {
+left: -20px;
+}
+100% {
+left: 100%;
+}
+}
+
+@media (max-width: 700px) {
+footer {
+bottom: unset;
+}
+.col {
+flex-basis: 100%;
+}
+
+.col:nth-child(2), .col:nth-child(3) {
+flex-basis: 100%;
+}
+}
+ </style>
+
+    <head>
+        <title>Alumination</title>
+       
+       
+    </head>
+    <body>
+        <div class="alumination" >
+            <center>
+                <div class="logo">
+                    <embed src="logo.svg" height="200" class="logo" >
+                </div>
+            </center>
+        </div>
+        
+        <footer>
+            <div class="row">
+              <div class="col">
+                <img src="https://sarc-iitb.org/static/img/ASMP2%403x.png" alt="logo" style="width:150px; height:150px;">
+                
+              </div>
+              <div class="col">
+                <h3>Head Office <div class="underline"><span></span></div>
+                </h3>
+                <p>Dean Alumni and Corporate Relations Office</p>
+                    <p>Dean ACR, Main Building, First Floor,</p>
+                    <p>IIT Bombay, Powai</p>
+                    <p>Mumbai – 400076, INDIA</p>
+                
+                <p class="email-id">dean.acr.office@iitb.ac.in</p>
+                <h4>9122-2576-4889<br> 2576-7023</h4>
+              </div>
+              <div class="col">
+                <h3>Useful Links <div class="underline"><span></span></div>
+                </h3>
+                <ul>
+                  <li><a href="#">Home</a></li>
+                  <li><a href="#">Services</a></li>
+                  <li><a href="#">About Us</a></li>
+                  <li><a href="#">Features</a></li>
+                  <li><a href="#">Contact</a></li>
+                </ul>
+              </div>
+              <div class="col">
+                
+                <h3>Newsletter <div class="underline"><span></span></div>
+                </h3>
+                <form method="post">
+                   {% csrf_token %}
+                  <i class="far fa-envelope"></i>
+                  <input type="text" name="feedback_question" Placeholder="Any suggestions ?" >
+                  <button type="submit">submit
+                    <!-- <i class="fas fa-arrow-right"></i> -->
+                </button>
+                </form>
+                <div class="col3"> 
+
+                <h3 class="heading">
+                    Get in touch
+                  </h3>
+
+                  <div class="social">
+                    <a href="https://www.facebook.com/SARC.IITB/">
+                      <ion-icon name="logo-facebook"></ion-icon>
+                    </a>
+                    <a href="https://twitter.com/SARC_IITB">
+                      <ion-icon name="logo-twitter"></ion-icon>
+                    </a>
+                    <a href="https://www.linkedin.com/in/sarciitb/?originalSubdomain=in">
+                      <ion-icon name="logo-linkedin"></ion-icon>
+                    </a>
+                  </div>
+                </div>
+            <hr>
+            
+          </footer>
+          <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    </body>
+</html>

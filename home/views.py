@@ -1,8 +1,9 @@
 from django.contrib.auth import login, logout
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
-from .models import Profile, mi_gd, EventsAttending
+from .models import Profile, feedback_question, mi_gd, EventsAttending
 from django.contrib.auth.models import User
+from django.core.mail import send_mail
 import numpy as np
 import pandas as pd
 import random
@@ -203,3 +204,16 @@ def migd(request):
 #         _name = request.POST.get('name')
 
 #     return render(request, 'register.html')
+
+
+# Feed back questions Ansh
+def feedback_questions(request):
+    if request.method=="POST":
+        data=request.POST.get('feedback_question')
+        save_data=feedback_question(feedback_question=data)
+        save_data.save()
+        send_mail('Hello feedback from alumination', data , 'sarc.web22@gmail.com',['anshpreet022@gmail.com'] , fail_silently=False)
+        return render(request ,'alumination.html')
+
+def alumination(request):
+    return render(request, "alumination.html")

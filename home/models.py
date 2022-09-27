@@ -50,3 +50,7 @@ class mi_gd(models.Model):
     pref3 = models.CharField(default=False, max_length=100)
     date = models.CharField(default=False, max_length=100)
     resume = models.FileField(upload_to='resume', blank=True)
+
+# question taken for 
+class feedback_question(models.Model):
+    feedback_question=models.CharField(max_length=100)
