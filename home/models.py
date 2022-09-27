@@ -54,3 +54,9 @@ class mi_gd(models.Model):
 # question taken for 
 class feedback_question(models.Model):
     feedback_question=models.CharField(max_length=100)
+    
+class Event_url(models.Model):
+    roll_no=models.PositiveBigIntegerField
+    event=models.CharField(max_length=100)
+    question=models.CharField(max_length=100)
+

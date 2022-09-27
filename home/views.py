@@ -1,7 +1,7 @@
 from django.contrib.auth import login, logout
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
-from .models import Profile, feedback_question, mi_gd, EventsAttending
+from .models import Profile, mi_gd, EventsAttending, Event_url
 from django.contrib.auth.models import User
 from django.core.mail import send_mail
 import numpy as np
@@ -14,6 +14,8 @@ import os
 # gauth = GoogleAuth()           
 # drive = GoogleDrive(gauth)
 
+def teamPage(request):
+    return render(request, 'TeamPage.html')
 
 def generateOtp():
     num = random.random()*1000000
@@ -67,22 +69,6 @@ def loginView(request):
     return render(request, 'login.html')
 
 
-def otpview(request):
-    if request.method.POST:
-        otpin = request.POST.get('otp')
-        rollno = request.session['rollno']
-        mobno = request.session['mobno']
-        otp = request.session['otp']
-        if(otpin == otp):
-            user = User.objects.filter(username = rollno)
-            login(request, user)
-        else:
-            context = {'message' : 'Incorrect OTP' }
-            return render(request, 'otpview.html', context)
-    else:
-        return render(request, 'otpview.html')
-
-
 def registerView(request):
     
     if request.user.is_authenticated:
@@ -96,22 +82,31 @@ def registerView(request):
         contact = request.POST.get('contact')
         p_email = request.POST.get('p_email')
 
-        check_user = Profile.objects.filter(rollno=rollno).first()
-        if check_user:
-            context = {'message': 'User already exists'}
-            return render(request, 'register.html', context)
         if not email.split('@')[1]=='iitb.ac.in':
             context = {'message': 'Please register using your LDAP ID'}
             return render(request, 'register.html', context)
 
-        # send_mail("Thank you for Bonding with SARC", "Your OTP for Registering in SARC is 345789", "web.sarc.iitb@gmail.com", [email, ], fail_silently=False)
-
-        user = User(username=rollno, password=contact)
-        profile = Profile(user=user, name=name, password=contact, rollno=rollno, department=department, degree=degree,contact=contact, p_email=p_email)
-        eventuser = EventsAttending(roll_no=rollno)
-        user.save()
-        profile.save()
-        eventuser.save()
+        check_user = User.objects.filter(username=rollno).first()
+        if check_user:
+            check_user.password = contact
+            puser = Profile.objects.filter(rollno = rollno).first()
+            puser.name = name
+            puser.password = contact
+            puser.dpartment = department
+            puser.degree = degree
+            puser.contact = contact
+            puser.p_email = p_email
+            puser.user = check_user
+            puser.save()
+            check_user.save()
+            return render(request, 'register.html')
+        else:         
+            user = User(username=rollno, password=contact)
+            profile = Profile(user=user, name=name, password=contact, rollno=rollno, department=department, degree=degree,contact=contact, p_email=p_email)
+            eventuser = EventsAttending(roll_no=rollno)
+            user.save()
+            profile.save()
+            eventuser.save()
         return redirect('login')
     return render(request, 'register.html')
 
@@ -132,12 +127,7 @@ def registerView(request):
 #     return redirect(index)
 
 def index(request):
-    # del request.session['rollno']
-    # context = {
-    #     'events': Event.objects.filter()
-    # }
-
-    return render(request, "index.html")
+    return render(request, "alumination.html")
 
 
 
@@ -171,12 +161,33 @@ def migd(request):
         #gfile = drive.CreateFile({'parents': [{'id': '1TgjDODLKJ8YFTs8PBqigcwR0RsXN4o7O'}]})
         #gfile.SetContentFile('resume')
         # gfile.Upload() # Upload the file.
-    return render(request, 'mi_gd.html')  
+    return render(request, 'mi_gd.html')
 
+# Events + questions
+def event_url(request):
+    if request.method=="POST":
+        roll_no=request.POST.get("rollno")
+        question=request.POST.get("question")
+        url=request.get_host+request.path
+        url_string=url.toString()
+        index = url_string.rfind('/')
+        event=url_string[index+1:] 
+        data= Event_url(roll_no=roll_no,event=event, question=question)
+        data.save() 
+    return  render(request, "qna.html")
 
+def bth(request):
+    userevent = EventsAttending.objects.filter(roll_no = request.user.username).first()
+    context = {'eventstate' : userevent.beyond_the_horizon }
+    return render(request, 'bth.html', context ) 
 
-# def loginView(request):
+def eventState(request, event, state):
+    rollno = request.user.username
+    userevent = EventsAttending.objects.filter(roll_no = rollno).first()
+    setattr(userevent, event, state)
+    userevent.save()
 
+<<<<<<< HEAD
 #     if request.method == 'POST':
 #         if request.user.is_authenticated:
 #             return redirect('index')
@@ -217,3 +228,6 @@ def feedback_questions(request):
 
 def alumination(request):
     return render(request, "alumination.html")
+=======
+    return HttpResponseRedirect(request.META['HTTP_REFERER'])
+>>>>>>> 28378083cc57a2daac7488cf7573d609d864d1b8
