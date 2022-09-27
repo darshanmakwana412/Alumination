@@ -68,22 +68,6 @@ def loginView(request):
     return render(request, 'login.html')
 
 
-def otpview(request):
-    if request.method.POST:
-        otpin = request.POST.get('otp')
-        rollno = request.session['rollno']
-        mobno = request.session['mobno']
-        otp = request.session['otp']
-        if(otpin == otp):
-            user = User.objects.filter(username = rollno)
-            login(request, user)
-        else:
-            context = {'message' : 'Incorrect OTP' }
-            return render(request, 'otpview.html', context)
-    else:
-        return render(request, 'otpview.html')
-
-
 def registerView(request):
     
     if request.user.is_authenticated:
@@ -142,11 +126,6 @@ def registerView(request):
 #     return redirect(index)
 
 def index(request):
-    # del request.session['rollno']
-    # context = {
-    #     'events': Event.objects.filter()
-    # }
-
     return render(request, "index.html")
 
 
@@ -202,46 +181,9 @@ def bth(request):
     return render(request, 'bth.html', context ) 
 
 def eventState(request, event, state):
-    print("Hello")
-    print(event + " "+ state )
     rollno = request.user.username
-    print(rollno)
     userevent = EventsAttending.objects.filter(roll_no = rollno).first()
     setattr(userevent, event, state)
-    # userevent[event] = int(state)
     userevent.save()
 
     return HttpResponseRedirect(request.META['HTTP_REFERER'])
-
-
-
-
-# def loginView(request):
-
-#     if request.method == 'POST':
-#         if request.user.is_authenticated:
-#             return redirect('index')
-
-#         _name = request.POST.get('name')
-
-#         user = Profile.objects.filter(user=request.user)
-
-#         if user is None:
-#             context = {'message': 'Profile not found'}
-#             return render(request, 'login.html', context)
-
-#         if _name == user.name_ :
-#             login(request, user)
-#             context = {'name': user.name_}
-#             return render(request, 'login.html', context)
-
-#         return render(request, 'login.html')
-        
-#     return render(request, 'login.html')
-
-# def registerView(request):
-#     if request.method == 'POST':
-        
-#         _name = request.POST.get('name')
-
-#     return render(request, 'register.html')
