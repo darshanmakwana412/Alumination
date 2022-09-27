@@ -126,7 +126,7 @@ def registerView(request):
 #     return redirect(index)
 
 def index(request):
-    return render(request, "index.html")
+    return render(request, "alumination.html")
 
 
 

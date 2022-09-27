@@ -12,5 +12,5 @@ urlpatterns = [
     path('event_url/',views.event_url,name="event_url"),
     path('beyond_the_horizon', views.bth, name="bth"),
     path('eventState/<event>/<state>', views.eventState, name="eventState"),
-    path('', views.teamPage, name="teampage"),
+    path('', views.index, name="teampage"),
 ]
