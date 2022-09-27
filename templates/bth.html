@@ -39,13 +39,18 @@
   width: 26px;
   left: 4px;
   bottom: 4px;
-  background-color: white;
+  /* background-color: white; */
   -webkit-transition: .4s;
   transition: .4s;
 }
 
 input:checked + .slider {
   background-color: #2196F3;
+}
+
+input:checked + .slider.round::before {
+  background: url('../static/img/events/excited.webp');
+  background-size: 100% 100%;
 }
 
 input:focus + .slider {
