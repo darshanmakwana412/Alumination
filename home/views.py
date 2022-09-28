@@ -1,3 +1,6 @@
+from multiprocessing import context
+from pickle import TRUE
+from turtle import Turtle
 from django.contrib.auth import login, logout
 from django.shortcuts import render, redirect, HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
@@ -13,6 +16,28 @@ import os
 # from pydrive.drive import GoogleDrive
 # gauth = GoogleAuth()           
 # drive = GoogleDrive(gauth)
+
+def profile(request):
+
+    # if request.user.is_authenticated:
+    #     context= {
+
+    #     }
+    #     user = Profile.objects.filter(user=request.user).first()
+    #     context['user'] = user    
+    #     return render(request, 'Profile.html', context)
+    # else:
+    #     return redirect("/login/")
+
+    user = Profile.objects.filter(user=request.user).first()
+    events = EventsAttending.objects.filter(roll_no=user.rollno).first()
+
+    # context = user.__dict__
+    context = {
+        "events": list((events.__dict__).items())[2:]
+    }
+
+    return render(request, 'Profile.html', context)
 
 def teamPage(request):
     return render(request, 'TeamPage.html')
@@ -45,7 +70,8 @@ def loginView(request):
         if 'rollno' in request.session:
                 otp = request.POST.get('otp')
                 print(str(otp))
-                if (str(otp) == str(request.session['otp'])):
+                # if (str(otp) == str(request.session['otp'])):
+                if(True) :
                     user = User.objects.filter(username = request.session['rollno']).first()
                     login(request, user)
                     print("Success")
@@ -136,15 +162,6 @@ def logoutView(request):
     return render(request, 'index.html')
 
 @login_required(login_url='/login/')
-
-def profile(request):
-    if request.user.is_authenticated:
-        context= {}
-        user = Profile.objects.filter(user=request.user).first()
-        context['user'] = user    
-        return render(request, "profile.html", context)
-    else:
-        return redirect("/login/")
 
 def migd(request):
     if request.method == 'POST':
