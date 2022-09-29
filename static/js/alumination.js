@@ -1,4 +1,3 @@
-AOS.init();
 
 var element = document.getElementsByClassName("chartcircles")[0];
 var chartsShowed = false;

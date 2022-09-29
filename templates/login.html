@@ -1,14 +1,24 @@
-<div class="form">
+<link rel="stylesheet" href="../static/css/login_styles.css">
+<div class="container">
+    <div class="title">Login</div>  
+    <div style="color: red; font-size: 20px; font-weight: bold;">{{message}}</div><br>
     <form class="login-form" method="post" action="{% url 'login' %}">
-      {% if message %}
-      <div style="color: red; font-size: 20px; font-weight: bold;">{{message}}</div><br>
-      {% endif %} 
       {% csrf_token %}
-      <h1 style="text-align: center; color:#2C559B; font-size: 50px;">LOGIN</h1><br>
-      <input type="text" name="rollno" placeholder="IITB Rollnumber" value="{{request.session.rollno}}" required>
-      <button class="reg">Login</button>
-      <p class="message">Not registered? <a href="{% url 'register' %}" style="color: #75A876;">Register</a></p>
-      {% if request.session.rollno %}
-      <input type="text" name="otp" placeholder="Enter OTP" required>
-      {% endif %}
+      <div class="user__details">
+        <div class="input__box">
+          <span class="details">Roll No.</span>
+          <input type="text" name="rollno" value="{{request.session.rollno}}" required>
+        </div>
+        {% if request.session.rollno %}
+        <div class="input__box">
+          <span class="details">OTP</span>
+          <input type="text" name="otp" pattern="[0-9]{6}" required>
+        </div>
+        {% endif %}
+      </div>
+      
+      <div class="button">
+        <input type="submit" value="Login">
+      </div>
     </form>
+  </div>
