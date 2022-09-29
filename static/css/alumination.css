@@ -1,7 +1,19 @@
 /* Alumination Image and Clouds */
+:root{
+  --fs : 25px
+} 
 
+.body{
+  scroll-snap-type: y mandatory;
+}
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+ }
 .alumination {
-    position: absolute;
+    position: fixed;
     top: 0;
     bottom: 0;
     right: 0;
@@ -11,7 +23,7 @@
     background-repeat: no-repeat;
     background-attachment: fixed;
     width: 100vw;
-    height: 90vh;
+    height: 100vh;
     background-size:cover;
     z-index: -10;
 }
@@ -30,8 +42,9 @@
     bottom: 0;
     max-width: 100%;
     animation: clouds calc(8s * var(--i)) linear infinite;
+    height: 125vh;
+    width: 500vh;
 }
-
 @keyframes clouds {
     0%{
         transform: translateX(-100%);
@@ -94,26 +107,19 @@ a {
 
   /*Alumination Font*/
 
-  
-  p {
-    color: white;
-    text-align: center;
+  @keyframes intro {
+    0%{
+      transform: translateY(200%);
+      opacity: 0;
+    }
+    100%{
+      transform: translateY(0);
+      opacity: 1;
+    }
   }
-  
-  h1 {
-    background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/209981/6963bbf342d87b3a2150bd8f59682b89.jpg);
-    -webkit-background-clip: text;
-    background-size: contain;
-    width: 100%;
-    text-align: center;
-    color: transparent;
-    font-weight: 900;
-  }
-  h1::before {
+  #headtext::before {
     content: attr(data-heading);
-    position: absolute;
-    left: 0;
-    top: 0;
+    margin-top: 50vh;
     width: 100%;
     background: linear-gradient(45deg, rgba(255, 255, 255, 0) 45%, rgba(255, 255, 255, 0.8) 50%, rgba(255, 255, 255, 0) 55%, rgba(255, 255, 255, 0) 100%);
     -webkit-background-clip: text;
@@ -148,25 +154,99 @@ a {
     src: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/209981/Ice%20kingdom%20-%20Bold%20-%20Por%20Kustren.woff");
   }
   
-  h1 {
-    top: 50%;
+  #headtext {
+    background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/209981/6963bbf342d87b3a2150bd8f59682b89.jpg);
+    -webkit-background-clip: text;
+    background-size: contain;
+    text-align: center;
+    color: transparent;
+    font-weight: 900;
+    position: sticky;
+    top: 0;
+    animation: intro 3s linear;
+    /* top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    position: absolute;
-    font-size: 10vw;
+    position: absolute; */
+    font-size: 150px;
     margin: 0;
     font-family: "frozen", serif;
     font-weight: 700;
+    transition: 3s;
+  }
+
+  .topright{
+    top: 0%!important;
+    left: 0%!important;
+    transform: translate(0, 0);
   }
 
   /* Alumination Text Ends*/
   
-.logo {
-    position: absolute;
-    /* transform: translateY(-50px); */
-    /* margin-top: 25%;
-    margin-left: 25%;
-margin */
-top: 50%;
-left: 25%;
+.content{
+  margin-top: 45vh;
+  width: 100%;
+  padding: 0 50px;
+}
+
+.filler{
+  height: 200vh;
+  width: 1000vw;
+}
+
+.headcontainer{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100vw;
+  margin-bottom: 40vh;
+}
+
+.aboutalum{
+  font-size: 30px;
+  color: black;
+  padding-bottom: 100px;
+  padding-left: 50px;
+  padding-right: 50px;
+  scroll-snap-align: start;
+  
+}
+
+.stats{
+  height: 100vh;
+  background: #6e8efb;
+}
+
+p.pchart{
+  padding-bottom: 20px;
+}
+
+blockquote{
+  border-left: 5px solid #ffce55;
+  background-color: white;
+  padding: 10px 8px;
+}
+
+div.chartcircles{
+  margin: auto;
+  width: 80%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+canvas.progress{
+  /* border: 2px solid #f2c351; */
+  height: 330px;
+  width: 330px;
+  background-color: #f9f9f9;
+}
+
+p.circlelabels{
+  text-align: center;
+  color: #333333;
+  font-size: 16;
+  text-transform: uppercase;
+
 }
