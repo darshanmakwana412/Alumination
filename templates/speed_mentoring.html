@@ -10,6 +10,32 @@
     <h1>
         THis is mainly a wellness session for students for mentally depresses or anxious ppl in campus.
         We need to take reg if people are interested or not
-    </h1>
+    </h1><br>
+    <form method="post">
+        {% csrf_token %}
+        <select name="date" id="date">
+            <option value="">Select Date</option>
+            <option value="15th October">15th October</option>
+            <option value="16th October">16th October</option>
+            <option value="Any Day Works">Any Day Works</option>
+        </select><br>
+        <select name="pref1" id="pref1">
+            <option value="">Select Pref1</option>
+            <option value="Consulting">Consulting</option>
+            <option value="Finance">Finance</option>
+            <option value="Analytics">Analytics</option>
+            <option value="IT/Software">IT/Software</option>
+            <option value="Product Management">Product Management</option>
+        </select><br>
+        <select name="pref2" id="pref2">
+            <option value="">Select Pref2</option>
+            <option value="Consulting">Consulting</option>
+            <option value="Finance">Finance</option>
+            <option value="Analytics">Analytics</option>
+            <option value="IT/Software">IT/Software</option>
+            <option value="Product Management">Product Management</option>
+        </select><br>
+    </form>
+    <button type="submit" class="submit">SUBMIT</button>
 </body>
 </html>

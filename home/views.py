@@ -1,10 +1,11 @@
 from multiprocessing import context
 from pickle import TRUE
 from turtle import Turtle
+from urllib import request
 from django.contrib.auth import login, logout
 from django.shortcuts import render, redirect, HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
-from .models import Profile, mi_gd, EventsAttending, Event_url
+from .models import Profile, mi_gd, EventsAttending, Event_url, speedm, groupm
 from django.contrib.auth.models import User
 from django.core.mail import send_mail
 import numpy as np
@@ -118,7 +119,7 @@ def registerView(request):
             puser = Profile.objects.filter(rollno = rollno).first()
             puser.name = name
             puser.password = contact
-            puser.dpartment = department
+            puser.department = department
             puser.degree = degree
             puser.contact = contact
             puser.p_email = p_email
@@ -165,16 +166,14 @@ def logoutView(request):
 
 def migd(request):
     if request.method == 'POST':
-        mode = request.POST.get('mode')
+        interest = request.POST.get('interest')
         pref_1 = request.POST.get('pref1')
         pref_2 = request.POST.get('pref2')
         pref_3 = request.POST.get('pref3')
         date = request.POST.get('date')
         resume = request.FILES['resume']
-        register = mi_gd(mode=mode, pref1=pref_1, pref2=pref_2, pref3=pref_3,date=date, resume=resume)
+        register = mi_gd(interest=interest, pref1=pref_1, pref2=pref_2, pref3=pref_3,date=date, resume=resume)
         register.save()
-        os.chdir('resume')
-        os.rename(resume.name, 'hello.pdf')
         #gfile = drive.CreateFile({'parents': [{'id': '1TgjDODLKJ8YFTs8PBqigcwR0RsXN4o7O'}]})
         #gfile.SetContentFile('resume')
         # gfile.Upload() # Upload the file.
@@ -196,7 +195,40 @@ def event_url(request):
 def bth(request):
     userevent = EventsAttending.objects.filter(roll_no = request.user.username).first()
     context = {'eventstate' : userevent.beyond_the_horizon }
-    return render(request, 'bth.html', context ) 
+    return render(request, 'bth.html', context )
+
+def speed_mentoring(request):
+    if request.method == 'POST':
+        date = request.POST.get('date')
+        pref_1 = request.POST.get('pref1')
+        pref_2 = request.POST.get('pref2')
+        data = speedm(date=date, pref1=pref_1, pref2=pref_2)
+        data.save()
+    return render(request, 'speed_mentoring.html')
+
+def group_mentoring(request):
+    if request.method == 'POST':
+        date = request.POST.get('date')
+        pref_1 = request.POST.get('pref1')
+        pref_2 = request.POST.get('pref2')
+        data = groupm(date=date, pref1=pref_1, pref2=pref_2)
+        data.save()
+    return render(request, 'group_mentoring.html')
+
+def ceo_connect(request):
+    userevent = EventsAttending.objects.filter(roll_no = request.user.username).first()
+    context = {'eventstate' : userevent.ceo_connect }
+    return render(request, 'ceo_connect.html')
+
+def cfc(request):
+    userevent = EventsAttending.objects.filter(roll_no = request.user.username).first()
+    context = {'eventstate' : userevent.coming_full_circle }
+    return render(request, 'cfc.html')
+
+def game_night(request):
+    userevent = EventsAttending.objects.filter(roll_no = request.user.username).first()
+    context = {'eventstate' : userevent.game_night }
+    return render(request, 'game_night.html')
 
 def eventState(request, event, state):
     rollno = request.user.username

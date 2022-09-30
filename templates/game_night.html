@@ -1,1 +1,113 @@
-<!Two games -- bridge and electronic games.. Take reg of people who are interested. Take e-game and game night reg separately>
+<! This is continuation of Bhavish agarwal's event. Where a ceo will be delivering a talk>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Night</title>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.7.1.min.js"></script>
+    <style>
+        .switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.switch input { 
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  /* background-color: white; */
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:checked + .slider.round::before {
+  background: url('../static/img/events/excited.webp');
+  background-size: 100% 100%;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+    </style>
+</head>
+<body>
+    <label class="switch">
+        <input type="checkbox" id="togBtn">
+        <span class="slider round"></span>
+      </label>
+<script>
+
+    path = "{{request.path}}"
+    var switchStatus = false;
+    initial = '{{eventstate}}'
+    if(initial == "False")  $('#togBtn').prop('checked', false);
+    else $('#togBtn').prop('checked', true);
+    function ajaxreq(switchvar){
+        state = Number(switchvar)
+        url = '/eventState'+path+'/'+state
+        $.ajax({
+		url: url,
+		type: "GET",
+		dataType: "json",
+	  });
+    }
+    $("#togBtn").on('change', function() {
+        if ($(this).is(':checked')) {
+            switchStatus = $(this).is(':checked');
+            ajaxreq(switchStatus)
+            // To verify
+        }
+        else {
+        switchStatus = $(this).is(':checked');
+        //    alert(switchStatus);// To verify
+        ajaxreq(switchStatus)
+        }
+    });
+
+</script>
+</body>
+</html>
