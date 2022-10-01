@@ -11,6 +11,11 @@ urlpatterns = [
     path('mi_gd', views.migd, name="migd"),
     path('qna', views.event_url, name="qna"),
     path('beyond_the_horizon', views.bth, name="bth"),
+    path('ceo_connect', views.ceo_connect, name="ceo_connect"),
+    path('speed_mentoring', views.speed_mentoring, name="speed_mentoring"),
+    path('group_mentoring', views.group_mentoring, name="group_mentoring"),
+    path('coming_full_circle', views.cfc, name="coming_full_circle"),
+    path('game_night', views.game_night, name="game_night"),
     path('eventState/<event>/<state>', views.eventState, name="eventState"),
     path('', views.index, name="teampage"),
 ]

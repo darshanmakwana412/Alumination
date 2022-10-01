@@ -9,28 +9,55 @@
 <body>
     <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
-    <select name="mode" id="mode">
-        <option value="online">Online</option>
-        <option value="offline">Offline</option>
-    </select>
-    <select name="pref1" id="pref1">
-        <option value="1">1</option>
-        <option value="2">2</option>
-    </select>
-    <select name="pref2" id="pref2">
-        <option value="1">1</option>
-        <option value="2">2</option>
-    </select>
-    <select name="pref3" id="pref3">
-        <option value="1">1</option>
-        <option value="2">2</option>
-    </select>
+    <select name="interest" id="interest">
+        <option value="">Select Interest</option>
+        <option value="Mock Interview">Mock Interview</option>
+        <option value="Group Discussion">Group Discussion</option>
+        <option value="Both">Both</option>
+    </select><br>
     <select name="date" id="date">
-        <option value="1">1</option>
-        <option value="2">2</option>
-    </select>
-    <input type="file" name="resume" id="resume" />
+        <option value="">Select Date</option>
+        <option value="15th October">15th October</option>
+        <option value="16th October">16th October</option>
+        <option value="Any Day Works">Any Day Works</option>
+    </select><br>
+    <select name="pref1" id="pref1">
+        <option value="">Select Pref1</option>
+        <option value="Management Consulting + HR">Management Consulting + HR</option>
+        <option value="Finance + HR">Finance + HR</option>
+        <option value="Analytics + HR">Analytics + HR</option>
+        <option value="Core + HR">Core + HR</option>
+        <option value="Software + HR">Software + HR</option>
+        <option value="Management + HR">Management + HR</option>
+        <option value="HR">HR</option>
+    </select><br>
+    <select name="pref2" id="pref2">
+        <option value="">Select Pref2</option>
+        <option value="Management Consulting + HR">Management Consulting + HR</option>
+        <option value="Finance + HR">Finance + HR</option>
+        <option value="Analytics + HR">Analytics + HR</option>
+        <option value="Core + HR">Core + HR</option>
+        <option value="Software + HR">Software + HR</option>
+        <option value="Management + HR">Management + HR</option>
+        <option value="HR">HR</option>
+    </select><br>
+    <select name="pref3" id="pref3">
+        <option value="">Select Pref3</option>
+        <option value="Management Consulting + HR">Management Consulting + HR</option>
+        <option value="Finance + HR">Finance + HR</option>
+        <option value="Analytics + HR">Analytics + HR</option>
+        <option value="Core + HR">Core + HR</option>
+        <option value="Software + HR">Software + HR</option>
+        <option value="Management + HR">Management + HR</option>
+        <option value="HR">HR</option>
+    </select><br>
+    <input type="file" name="resume" id="resume" /><br>
     <button type="submit" class="submit">SUBMIT</button>
 </form>
+<script>
+    var select = document.getElementById('pref1');
+var text = select.options[select.selectedIndex].text;
+console.log(text);
+</script>
 </body>
 </html>
