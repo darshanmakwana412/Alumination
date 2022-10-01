@@ -1,7 +1,19 @@
-from asyncio import events
-from dataclasses import field
+from atexit import register
+from email.mime import image
+from email.policy import default
 from django.db import models
 from django.contrib.auth.models import User
+
+# class Event(models.Model):
+#     id
+#     name = models.TextField(default="Friendly Funeral")
+#     description = models.TextField(default="Ops!! Looks Like this event is not finalised, we will updating soon")
+#     image = models.ImageField()
+#     registered = models.BooleanField(default=False)
+#     models.DateTimeField(auto_now = True)
+
+#     def __str__(self):
+#         return self.name
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -12,6 +24,11 @@ class Profile(models.Model):
     degree = models.CharField(max_length=50, null=True)
     p_email = models.CharField(max_length=100, null=True)
     contact = models.CharField(max_length=15, null=True)
+    # events = models.ManyToManyField(Event, related_name='attendees')
+
+    def __str__(self):
+        return self.name
+
 
 class Queries(models.Model):
     roll_no = models.AutoField(primary_key=True)
@@ -22,7 +39,7 @@ class Queries(models.Model):
 class GroupMentoringTopics(models.Model):
     roll_no = models.AutoField(primary_key=True)
     topic = models.CharField(max_length=100)
-    date = models.DateTimeField()
+    dateTime = models.DateTimeField(auto_now=True)
 
 
 class EventsAttending(models.Model):

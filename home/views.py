@@ -1,22 +1,11 @@
-from multiprocessing import context
-from pickle import TRUE
-from turtle import Turtle
-from urllib import request
 from django.contrib.auth import login, logout
-from django.shortcuts import render, redirect, HttpResponseRedirect
+from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from .models import Profile, mi_gd, EventsAttending, Event_url, speedm, groupm
 from django.contrib.auth.models import User
-from django.core.mail import send_mail
-import numpy as np
-import pandas as pd
 import random
+import datetime
 from twilio.rest import Client
-import os
-# from pydrive.auth import GoogleAuth
-# from pydrive.drive import GoogleDrive
-# gauth = GoogleAuth()           
-# drive = GoogleDrive(gauth)
 
 eventsData = [
     {
@@ -101,13 +90,7 @@ def profile(request):
     if request.user.is_authenticated:
 
         user = Profile.objects.filter(user=request.user).first()
-        events = EventsAttending.objects.filter(roll_no=user.rollno).first()
-
-        i = 0
-
-        for key, value in list(events.__dict__.items())[2:]:
-            eventsData[i].status = value
-            i += 1
+        # events = Event.objects.filter(roll_no=user.rollno).first()
 
         context = {
             "user": dict(list(user.__dict__.items())),
@@ -216,22 +199,6 @@ def registerView(request):
         return redirect('login')
     return render(request, 'register.html')
 
-
-# def addEvents(request):
-
-#     sheetUrl = 'https://docs.google.com/spreadsheets/d/1Y5EQpyrLhIA--inNWizoZE-MJ_4kryAKJSvnvMwy3tA/edit#gid=0'
-#     url = sheetUrl.replace('/edit#gid=', '/export?format=csv&gid=')
-#     eventData = pd.read_csv(url)
-
-#     Event.objects.all().delete()
-
-#     for i in range(len(eventData)):
-#         Event.objects.create(
-#             name_ = eventData.iloc[i]["name_"],
-#         )
-
-#     return redirect(index)
-
 def index(request):
     return render(request, "alumination.html")
 
@@ -251,11 +218,12 @@ def migd(request):
         pref_3 = request.POST.get('pref3')
         date = request.POST.get('date')
         resume = request.FILES['resume']
+
+        profileRollNo = Profile.objects.filter(user=request.user).first().rollno
+        resume.name = f"{profileRollNo}_{datetime.datetime.now()}.pdf"
+
         register = mi_gd(interest=interest, pref1=pref_1, pref2=pref_2, pref3=pref_3,date=date, resume=resume)
         register.save()
-        #gfile = drive.CreateFile({'parents': [{'id': '1TgjDODLKJ8YFTs8PBqigcwR0RsXN4o7O'}]})
-        #gfile.SetContentFile('resume')
-        # gfile.Upload() # Upload the file.
     return render(request, 'mi_gd.html')
 
 # Events + questions
@@ -314,4 +282,3 @@ def eventState(request, event, state):
     userevent = EventsAttending.objects.filter(roll_no = rollno).first()
     setattr(userevent, event, state)
     userevent.save()
-
