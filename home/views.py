@@ -17,27 +17,106 @@ import os
 # gauth = GoogleAuth()           
 # drive = GoogleDrive(gauth)
 
+eventsData = [
+    {
+        "name": "Beyond The Horizon",
+        "status": 0,
+        "image": "../static/img/events/2.1.jpg",
+    },
+    {
+        "name": "Beyond The Horizon",
+        "status": 0,
+        "image": "../static/img/events/2.1.jpg",
+    },
+    {
+        "name": "Beyond The Horizon",
+        "status": 0,
+        "image": "../static/img/events/2.1.jpg",
+    },
+    {
+        "name": "Beyond The Horizon",
+        "status": 0,
+        "image": "../static/img/events/2.1.jpg",
+    },
+    {
+        "name": "Beyond The Horizon",
+        "status": 0,
+        "image": "../static/img/events/2.1.jpg",
+    },
+    {
+        "name": "Beyond The Horizon",
+        "status": 0,
+        "image": "../static/img/events/2.1.jpg",
+    },
+    {
+        "name": "Beyond The Horizon",
+        "status": 0,
+        "image": "../static/img/events/2.1.jpg",
+    },
+    {
+        "name": "Beyond The Horizon",
+        "status": 0,
+        "image": "../static/img/events/2.1.jpg",
+    },
+    {
+        "name": "Beyond The Horizon",
+        "status": 0,
+        "image": "../static/img/events/2.1.jpg",
+    },
+    {
+        "name": "Beyond The Horizon",
+        "status": 0,
+        "image": "../static/img/events/2.1.jpg",
+    },
+    {
+        "name": "Beyond The Horizon",
+        "status": 0,
+        "image": "../static/img/events/2.1.jpg",
+    },
+    {
+        "name": "Beyond The Horizon",
+        "status": 0,
+        "image": "../static/img/events/2.1.jpg",
+    },
+    {
+        "name": "Beyond The Horizon",
+        "status": 0,
+        "image": "../static/img/events/2.1.jpg",
+    },
+    {
+        "name": "Beyond The Horizon",
+        "status": 0,
+        "image": "../static/img/events/2.1.jpg",
+    },
+    {
+        "name": "Beyond The Horizon",
+        "status": 0,
+        "image": "../static/img/events/2.1.jpg",
+    },
+]
+
 def profile(request):
 
-    # if request.user.is_authenticated:
-    #     context= {
+    if request.user.is_authenticated:
 
-    #     }
-    #     user = Profile.objects.filter(user=request.user).first()
-    #     context['user'] = user    
-    #     return render(request, 'Profile.html', context)
-    # else:
-    #     return redirect("/login/")
+        user = Profile.objects.filter(user=request.user).first()
+        events = EventsAttending.objects.filter(roll_no=user.rollno).first()
 
-    user = Profile.objects.filter(user=request.user).first()
-    events = EventsAttending.objects.filter(roll_no=user.rollno).first()
+        i = 0
 
-    # context = user.__dict__
-    context = {
-        "events": list((events.__dict__).items())[2:]
-    }
+        for key, value in list(events.__dict__.items())[2:]:
+            eventsData[i].status = value
+            i += 1
 
-    return render(request, 'Profile.html', context)
+        context = {
+            "user": dict(list(user.__dict__.items())),
+            "events": eventsData
+        }
+
+        return render(request, 'Profile.html', context)
+
+    else:
+        return redirect(loginView)
 
 def teamPage(request):
     return render(request, 'TeamPage.html')

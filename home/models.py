@@ -22,25 +22,26 @@ class Queries(models.Model):
 class GroupMentoringTopics(models.Model):
     roll_no = models.AutoField(primary_key=True)
     topic = models.CharField(max_length=100)
+    date = models.DateTimeField()
 
 
 class EventsAttending(models.Model):
-    roll_no = models.AutoField(primary_key=True)
-    beyond_the_horizon = models.BooleanField(default=False)
-    workshop_1 = models.BooleanField(default=False)
-    workshop_2 = models.BooleanField(default=False)
-    workshop_3 = models.BooleanField(default=False)
-    workshop_4 = models.BooleanField(default=False)
-    workshop_5 = models.BooleanField(default=False)
-    workshop_6 = models.BooleanField(default=False)
-    standup = models.BooleanField(default=False)
-    game_night = models.BooleanField(default=False)
-    student_alumni_mentorship = models.BooleanField(default=False)
-    coming_full_circle = models.BooleanField(default=False)
-    ypo = models.BooleanField(default=False)
-    tedx = models.BooleanField(default=False)
-    ceo_connect = models.BooleanField(default=False)
-    speed_mentoring = models.BooleanField(default=False)
+    roll_no = models.AutoField(primary_key=True)                        #1
+    beyond_the_horizon = models.BooleanField(default=False)             #2
+    it_software = models.BooleanField(default=False)                     #3
+    consulting = models.BooleanField(default=False)                     #4
+    analytics = models.BooleanField(default=False)                     #5
+    quant = models.BooleanField(default=False)                     #6    
+    hr = models.BooleanField(default=False)                     #7
+    product_management = models.BooleanField(default=False)                     #8
+    standup = models.BooleanField(default=False)                        #9
+    game_night = models.BooleanField(default=False)                     #10
+    student_alumni_mentorship = models.BooleanField(default=False)      #11
+    coming_full_circle = models.BooleanField(default=False)             #12
+    ypo = models.BooleanField(default=False)                            #13
+    tedx = models.BooleanField(default=False)                           #14
+    ceo_connect = models.BooleanField(default=False)                    #15
+    speed_mentoring = models.BooleanField(default=False)                #16
 
     
 class mi_gd(models.Model):
