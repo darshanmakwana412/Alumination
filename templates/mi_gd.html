@@ -1,63 +1,107 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../static/css/mi_gd.css">
     <title>MI/GD</title>
 </head>
 <body>
-    <form method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-    <select name="interest" id="interest">
-        <option value="">Select Interest</option>
-        <option value="Mock Interview">Mock Interview</option>
-        <option value="Group Discussion">Group Discussion</option>
-        <option value="Both">Both</option>
-    </select><br>
-    <select name="date" id="date">
-        <option value="">Select Date</option>
-        <option value="15th October">15th October</option>
-        <option value="16th October">16th October</option>
-        <option value="Any Day Works">Any Day Works</option>
-    </select><br>
-    <select name="pref1" id="pref1">
-        <option value="">Select Pref1</option>
-        <option value="Management Consulting + HR">Management Consulting + HR</option>
-        <option value="Finance + HR">Finance + HR</option>
-        <option value="Analytics + HR">Analytics + HR</option>
-        <option value="Core + HR">Core + HR</option>
-        <option value="Software + HR">Software + HR</option>
-        <option value="Management + HR">Management + HR</option>
-        <option value="HR">HR</option>
-    </select><br>
-    <select name="pref2" id="pref2">
-        <option value="">Select Pref2</option>
-        <option value="Management Consulting + HR">Management Consulting + HR</option>
-        <option value="Finance + HR">Finance + HR</option>
-        <option value="Analytics + HR">Analytics + HR</option>
-        <option value="Core + HR">Core + HR</option>
-        <option value="Software + HR">Software + HR</option>
-        <option value="Management + HR">Management + HR</option>
-        <option value="HR">HR</option>
-    </select><br>
-    <select name="pref3" id="pref3">
-        <option value="">Select Pref3</option>
-        <option value="Management Consulting + HR">Management Consulting + HR</option>
-        <option value="Finance + HR">Finance + HR</option>
-        <option value="Analytics + HR">Analytics + HR</option>
-        <option value="Core + HR">Core + HR</option>
-        <option value="Software + HR">Software + HR</option>
-        <option value="Management + HR">Management + HR</option>
-        <option value="HR">HR</option>
-    </select><br>
-    <input type="file" name="resume" id="resume" /><br>
-    <button type="submit" class="submit">SUBMIT</button>
-</form>
-<script>
-    var select = document.getElementById('pref1');
-var text = select.options[select.selectedIndex].text;
-console.log(text);
-</script>
+    <div class="eventhead">
+        Mock Interview & Group Discussions
+    </div>
+
+    <div class="infosec">
+        <div class="infotext">
+            Strengthen and escalate your placement prep like never before! With their immense knowledge and extensive experience, our alumni will be guiding you so that you can excel and emerge triumphant in the coming placement season.
+        </div>
+
+
+        <div class="infographics">
+            <div class="datentime">
+                <div class="date">
+                    <i class="fa fa-2x fa-calendar"></i> <p><span class="counter" data-count="15"></span> / <span class="counter" data-count="10"></span> / <span class="counter" data-count="2022"></span></p>
+                </div>
+                <div class="time"><i class="fa fa-2x fa-clock-o"></i> <p><span class="counter" data-count="4">0</span> : <span class="counter" data-count="30">0</span></p> </div>
+            </div>
+            <div class="venue"><div><i class="fa fa-2x fa-map-marker"></i></div> <p>Venue</p> </div>
+        </div>
+    </div>
+
+    <div class="mapntoggle">
+        <div class="togglearea">
+            <div class="box">
+            <a href="#m1-o" class="link-1" id="m1-c">Register</a>
+          
+            <div class="modal-container" id="m1-o" style="--m-background: transparent;">
+              <div class="modal">
+                <h1 class="modal__title">MI/GD Registration</h1>
+                <p class="modal__text">
+                    <form method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                    <select name="interest" id="interest">
+                        <option value="">Select Interest</option>
+                        <option value="Mock Interview">Mock Interview</option>
+                        <option value="Group Discussion">Group Discussion</option>
+                        <option value="Both">Both</option>
+                    </select><br><br>
+                    <select name="date" id="date">
+                        <option value="">Select Date</option>
+                        <option value="15th October">15th October</option>
+                        <option value="16th October">16th October</option>
+                        <option value="Any Day Works">Any Day Works</option>
+                    </select><br><br>
+                    <select name="pref1" id="pref1">
+                        <option value="">Select Pref1</option>
+                        <option value="Management Consulting + HR">Management Consulting + HR</option>
+                        <option value="Finance + HR">Finance + HR</option>
+                        <option value="Analytics + HR">Analytics + HR</option>
+                        <option value="Core + HR">Core + HR</option>
+                        <option value="Software + HR">Software + HR</option>
+                        <option value="Management + HR">Management + HR</option>
+                        <option value="HR">HR</option>
+                    </select><br><br>
+                    <select name="pref2" id="pref2">
+                        <option value="">Select Pref2</option>
+                        <option value="Management Consulting + HR">Management Consulting + HR</option>
+                        <option value="Finance + HR">Finance + HR</option>
+                        <option value="Analytics + HR">Analytics + HR</option>
+                        <option value="Core + HR">Core + HR</option>
+                        <option value="Software + HR">Software + HR</option>
+                        <option value="Management + HR">Management + HR</option>
+                        <option value="HR">HR</option>
+                    </select><br><br>
+                    <select name="pref3" id="pref3">
+                        <option value="">Select Pref3</option>
+                        <option value="Management Consulting + HR">Management Consulting + HR</option>
+                        <option value="Finance + HR">Finance + HR</option>
+                        <option value="Analytics + HR">Analytics + HR</option>
+                        <option value="Core + HR">Core + HR</option>
+                        <option value="Software + HR">Software + HR</option>
+                        <option value="Management + HR">Management + HR</option>
+                        <option value="HR">HR</option>
+                    </select><br><br>
+                    <input type="text" name="text" id="text" class="core" placeholder="Core Subfield"><br><br>
+                    <label>Resume:</label>
+                    <input type="file" name="resume" id="resume" /><br><br>
+                    <button type="submit" class="submit">SUBMIT</button>
+                </form>
+                <a href="#m1-c" class="link-2"></a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="maparea"><iframe src="https://www.google.com/maps/embed?pb=!1m26!1m12!1m3!1d5486.967501056844!2d72.90907818107429!3d19.13310801417758!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m11!3e6!4m5!1s0x3be7b80705fb82d1%3A0x8ca0bde59b15114f!2s2%2C%20Students&#39;%20Residential%20Zone%2C%20IIT%20Area%2C%20Powai%2C%20Mumbai%2C%20Maharashtra%20400076!3m2!1d19.136076!2d72.90727199999999!4m3!3m2!1d19.1319254!2d72.91435899999999!5e0!3m2!1sen!2sin!4v1663959375523!5m2!1sen!2sin" width="600" height="230" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
+    </div>
+    <script src="../static/js/mi_gd.js"></script>
+    <script>
+        if(document.getElementById('pref1').value=='Core + HR' || document.getElementById('pref2').value=='Core + HR' || document.getElementById('pref3').value=='Core + HR'){
+             document.getElementById('text').style.display = "block"
+        }
+    </script>
 </body>
 </html>
