@@ -1,5 +1,5 @@
-/venv
-/Alumination/.env
+# /venv
+# /Alumination/.env
 *.log
 *.pot
 *.pyc
