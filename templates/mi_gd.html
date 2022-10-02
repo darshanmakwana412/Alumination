@@ -10,36 +10,40 @@
     <title>MI/GD</title>
 </head>
 <body style="background: url('mock_interview.jpeg'); background-size: cover;">
-    <div class="eventhead">
-        Mock Interview & Group Discussions
+    <div class="eventhead" id="phonehead">
+        <div class="container">
+            <h1 class="black">Mock Interview & Group Discussions</h1>
+
+        </div>
     </div>
 
 
     <div class="infosec">
-        <div class="infotext">
-            Strengthen and escalate your placement prep like never before! With their immense knowledge and extensive experience, our alumni will be guiding you so that you can excel and emerge triumphant in the coming placement season.
+        <div style="color: white;" class="infotext">
+        Strengthen and escalate your placement prep like never before! With their immense knowledge and extensive experience, our alumni will be guiding you so that you can excel and emerge triumphant in the coming placement season.
         </div>
 
 
         <div class="infographics">
             <div class="datentime">
                 <div class="date">
-                    <i class="fa fa-2x fa-calendar"></i> <p><span class="counter" data-count="15"></span> / <span class="counter" data-count="10"></span> / <span class="counter" data-count="2022"></span></p>
+                    <i class="fa fa-3x fa-calendar"></i> <p><span class="counter" data-count="15"></span> / <span class="counter" data-count="10"></span> / <span class="counter" data-count="2022"></span></p>
                 </div>
-                <div class="time"><i class="fa fa-2x fa-clock-o"></i> <p><span class="counter" data-count="4">0</span> : <span class="counter" data-count="30">0</span></p> </div>
+                <div class="time"><i class="fa fa-3x fa-clock-o"></i> <p><span class="counter" data-count="4">0</span> : <span class="counter" data-count="30">0</span></p> </div>
             </div>
-            <div class="venue"><div><i class="fa fa-2x fa-map-marker"></i></div> <p>Venue</p> </div>
+            <div class="venue"><div><i class="fa fa-3x fa-map-marker"></i></div> <p>Venue</p> </div>
         </div>
     </div>
 
         <div class="togglearea">
             <div class="box">
-                <a href="#m1-o" class="learn-more">Register</a>
+                <a href="#m1-o" class="learn-more" id="reg">Register</a>
           
-            <div class="modal-container" id="m1-o" style="--m-background: transparent;">
+             <div class="modal-container" id="m1-o" style="--m-background: transparent;">
               <div class="modal">
-                <h1 class="modal__title">MI/GD Registration</h1>
-                <p class="modal__text">
+                 <center><h1 class="modal__title">MI/GD Registration</h1></center>
+                 <p class="modal__text">
+<center>
                     <form method="post" enctype="multipart/form-data">
                         {% csrf_token %}
                     <select name="interest" id="interest">
@@ -86,9 +90,11 @@
                     </select>
                     <input type="text" name="core_field" id="coresub" class="core" placeholder="Core Subfield">
                     <div id="resumelabel">Resume:</div>
-                    <input type="file" name="resume" id="resume" required /><br><br>
+                  <center>  <input type="file" name="resume" id="resume" required /></center>
+                    <br><br>
                     <button type="submit" class="submit">SUBMIT</button>
                 </form>
+            </center>
                 <a href="#m1-c" class="link-2"></a>
               </div>
             </div>

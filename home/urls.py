@@ -19,4 +19,5 @@ urlpatterns = [
     path('game_night', views.game_night, name="game_night"),
     path('eventState/<event>/<state>', views.eventState, name="eventState"),
     path('', views.index, name="teampage"),
+    path('events', views.events, name="events")
 ]

@@ -1,0 +1,315 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-size: 25px;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+	background: #e3f2fd
+}
+
+.svghead {
+	font-family: 'Russo One', sans-serif;
+	width: 800px; height: 200px;
+    margin-top: 80px;
+}
+.svghead text {
+	text-transform: uppercase;
+	animation: stroke 5s infinite alternate;
+	stroke-width: 2;
+	stroke: #365fa0;
+	font-size: 100px;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+@keyframes stroke {
+	0%   {
+		fill: rgba(72,138,20,0); stroke: #808080;
+		stroke-dashoffset: 25%; stroke-dasharray: 0 50%; stroke-width: 2;
+	}
+	70%  {fill: rgba(72,138,20,0); stroke: #808080; }
+	80%  {fill: rgba(72,138,20,0); stroke: #808080; stroke-width: 3; }
+	100% {
+		fill: white; stroke: rgba(54,95,160,0); 
+		stroke-dashoffset: -25%; stroke-dasharray: 50% 0; stroke-width: 0;
+	}
+}
+
+.globalwrap{
+    width: 100vw;
+    min-height: 100vh;
+    padding: 10px 70px;
+    position: relative;
+}
+
+.cardwrap{
+  min-height: 50vh;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 50px;
+}
+
+  .card {
+    font-weight: bold;
+    padding: 1em;
+    color: white;
+    
+    width:  300px;
+    height: 400px;
+    box-shadow: 0 1px 5px #00000099;
+    
+    border-radius: 10px;
+    background-image: url(https://images.unsplash.com/photo-1557672199-6e8c8b2b8fff?ixlib=rb-1.2.1&auto=format&fit=crop&w=934&q=80);
+    background-size: cover;
+    
+    position: relative;
+    
+    transition-duration: 300ms;
+    transition-property: transform, box-shadow;
+    transition-timing-function: ease-out;
+    transform: rotate3d(0);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 50px;
+  }
+  
+  .card:hover {
+    transition-duration: 150ms;
+    box-shadow: 0 5px 20px 5px #00000044;
+  }
+  
+  .card .glow {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    
+    background-image: radial-gradient(circle at 50% -20%, #ffffff22, #0000000f);
+  }
+
+
+  #webgl-canvas {
+    background: radial-gradient(
+      circle farthest-corner at center top,
+      #071021,
+      #19324a
+    );
+    width: 100vw!important;
+    height: 100%!important;
+    
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -10;
+  }
+
+
+  /*Navbar */
+
+  
+.laptop{
+    height: 70px;
+    width: 100vw;
+    position: fixed;
+    z-index: 1000;
+    background-color:black;
+    display: flex;
+    gap: 120px;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+
+.laptop ul{
+    display: flex;
+    list-style-type: none;
+    justify-content: space-evenly;
+    width: 100%;
+}
+
+.laptop img{
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 70px;
+    z-index: 10;
+}
+
+.laptop ul li{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+
+.sun{
+    position: absolute;
+    background: #ffa947;
+    width: 200px;
+    height: 200px;
+    border-radius: 100%;
+    z-index: 9;
+    left: 50%;
+    top: -7%;
+    transform: translateX(-50%);
+}
+#hamburger {
+    background-color: transparent;
+    border: none;
+    display: flex;
+    padding: 0;
+    z-index: 1000;
+    height: 100%;
+  }
+  #hamburger .line {
+    fill: none;
+    stroke: white;
+    stroke-width: 1;
+    transition: stroke-dasharray 600ms cubic-bezier(0.4, 0, 0.2, 1), stroke-dashoffset 600ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  #hamburger .line1 {
+    stroke-dasharray: 60 207;
+    stroke-width: 6;
+  }
+  #hamburger .line2 {
+    stroke-dasharray: 60 60;
+    stroke-width: 6;
+  }
+  #hamburger .line3 {
+    stroke-dasharray: 60 207;
+    stroke-width: 6;
+  }
+  #hamburger.open .line1 {
+    stroke-dasharray: 90 207;
+    stroke-dashoffset: -134;
+    stroke-width: 6;
+  }
+  #hamburger.open .line2 {
+    stroke-dasharray: 1 60;
+    stroke-dashoffset: -30;
+    stroke-width: 6;
+  }
+  #hamburger.open .line3 {
+    stroke-dasharray: 90 207;
+    stroke-dashoffset: -134;
+    stroke-width: 6;
+  }
+
+  #overlay{
+    display: none;
+  }
+
+  .mobile{
+    display: none;
+  }
+
+@media (max-width: 600px) {
+
+    *{
+        font-size: 18px;
+    }
+    .laptop{
+        display: none;
+    }
+
+    .mobile{
+        height: 70px;
+        width: 100vw;
+        position: fixed;
+        z-index: 1000;
+        background-color:rgb(2,0,36);
+        display: flex;
+        box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+    }
+
+    .alumtext{
+        width: 325px;
+        height: 150px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translateX(-55%) translateY(-50%);
+    }
+
+    .alumination .clouds img{
+        height: 30vh;
+        position: absolute;
+        bottom: 0;
+        max-width: 100%;
+        animation: clouds calc(8s * var(--i)) linear infinite;
+    }
+
+    .islandleft{
+        display: none;
+    }
+
+    .islandright{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translateX(-50%) translateY(-50%);
+        width: 325px;
+        height: 325px;
+    }
+
+    .mobile{
+        display: flex;
+        justify-content: space-between;
+    }
+
+    #overlay{
+        display: block;
+        position: fixed;
+        height: 0vh;
+        width: 100vw;
+        background-color:rgb(2,0,36);
+        z-index: 100;
+        overflow: hidden;
+    }
+
+    #overlay ul{
+        padding-top: 100px;
+        width: 100%;
+        list-style-type: none;
+        overflow: hidden;
+    }
+
+    #overlay ul li{
+        color: white;
+        width: 100%;
+        text-align: center;
+        padding: 30px;
+        
+
+    }   
+}
+
+
+@media (max-width: 600px) {
+
+ .globalwrap{
+  padding: 20px;
+ }
+
+ .cardwrap{
+  justify-content: center;
+ }
+
+ .svghead{
+  margin-top: 0px;
+ }
+
+ .svghead text {
+	font-size: 50px;
+
+}
+}

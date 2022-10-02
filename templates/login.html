@@ -11,7 +11,7 @@
         </div>
         {% if request.session.rollno %}
         <div class="input__box">
-          <span class="details">OTP</span>
+          <span class="details">OTP(Sent on your Email)</span>
           <input type="text" name="otp" pattern="[0-9]{6}" required>
         </div>
         {% endif %}
@@ -20,5 +20,6 @@
       <div class="button">
         <input type="submit" value="Login">
       </div>
+      Not Registered? <a href="/register">Register</a>
     </form>
   </div>

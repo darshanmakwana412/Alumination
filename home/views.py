@@ -1,100 +1,131 @@
 from django.contrib.auth import login, logout
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
-from .models import Profile, mi_gd, EventsAttending, Event_url, speedm, groupm
+from .models import Profile, migd, EventsAttending, Event_url, speedMentoring, groupm, shadowPrograme
 from django.contrib.auth.models import User
 import random
 import datetime
+from django.core.mail import send_mail
 from twilio.rest import Client
+import pandas as pd
+import numpy as np
 
-eventsData = [
-    {
+eventsData = {
+    "beyond_the_horizon": {
         "name": "Beyond The Horizon",
         "status": 0,
         "image": "../static/img/events/2.1.jpg",
     },
-    {
+    "it_software": {
         "name": "Beyond The Horizon",
         "status": 0,
         "image": "../static/img/events/2.1.jpg",
     },
-    {
+    "consulting": {
         "name": "Beyond The Horizon",
         "status": 0,
         "image": "../static/img/events/2.1.jpg",
     },
-    {
+    "analytics": {
         "name": "Beyond The Horizon",
         "status": 0,
         "image": "../static/img/events/2.1.jpg",
     },
-    {
+    "quant": {
         "name": "Beyond The Horizon",
         "status": 0,
         "image": "../static/img/events/2.1.jpg",
     },
-    {
+    "hr": {
         "name": "Beyond The Horizon",
         "status": 0,
         "image": "../static/img/events/2.1.jpg",
     },
-    {
+    "product_management": {
         "name": "Beyond The Horizon",
         "status": 0,
         "image": "../static/img/events/2.1.jpg",
     },
-    {
+    "standup": {
         "name": "Beyond The Horizon",
         "status": 0,
         "image": "../static/img/events/2.1.jpg",
     },
-    {
+    "game_night": {
         "name": "Beyond The Horizon",
         "status": 0,
         "image": "../static/img/events/2.1.jpg",
     },
-    {
+    "student_alumni_mentorship": {
         "name": "Beyond The Horizon",
         "status": 0,
         "image": "../static/img/events/2.1.jpg",
     },
-    {
+    "coming_full_circle": {
         "name": "Beyond The Horizon",
         "status": 0,
         "image": "../static/img/events/2.1.jpg",
     },
-    {
+    "ypo": {
         "name": "Beyond The Horizon",
         "status": 0,
         "image": "../static/img/events/2.1.jpg",
     },
-    {
+    "tedx": {
         "name": "Beyond The Horizon",
         "status": 0,
         "image": "../static/img/events/2.1.jpg",
     },
-    {
+    "ceo_connect": {
         "name": "Beyond The Horizon",
         "status": 0,
         "image": "../static/img/events/2.1.jpg",
     },
-    {
+    "speed_mentoring": {
         "name": "Beyond The Horizon",
         "status": 0,
         "image": "../static/img/events/2.1.jpg",
-    },
-]
+    }
+}
+
+def createMigdExcel():
+
+    df = pd.DataFrame(list(migd.objects.all().values()))
+    df.to_csv("Alumination.csv")
+
+def shadowProgram(request):
+
+    context = {
+        "message": ""
+    }
+
+    if request.method == 'POST':
+        paymentProof = request.FILES['paymentProof']
+
+        profile = Profile.objects.filter(user=request.user).first()
+        paymentProof.name = f"{profile.rollno}_{profile.name}_{datetime.datetime.now()}_paymentProof.png"
+
+        shadowPrograme(rollno=profile.rollno, image=paymentProof).save()
+
+        context["message"] = "Image Uploaded Successfully"
+
+        return render(request, 'shadowProgram.html', context)        
+    else :
+        return render(request, 'shadowProgram.html', context)
 
 def profile(request):
 
     if request.user.is_authenticated:
 
         user = Profile.objects.filter(user=request.user).first()
-        # events = Event.objects.filter(roll_no=user.rollno).first()
+        events = EventsAttending.objects.filter(roll_no=user.rollno).first()
+
+        for key, value in list(events.__dict__.items())[2:]:
+            eventsData[key]["status"] = value
 
         context = {
             "user": dict(list(user.__dict__.items())),
-            "events": eventsData
+            "events": eventsData.values()
         }
 
         return render(request, 'Profile.html', context)
@@ -113,7 +144,7 @@ def generateOtp():
 def sendOtp(otp, mobno, rollno):
     email = str(rollno) + "@iitb.ac.in"
     mob = "+91" + str(mobno)
-    # send_mail("Thank you for Bonding with SARC", "Your OTP for Registering in SARC is "+otp, "web.sarc.iitb@gmail.com", [email, ], fail_silently=False)
+    send_mail("Thank you for Bonding with SARC", "Your OTP for Registering in SARC is "+otp, "web.sarc.iitb@gmail.com", [email, ], fail_silently=False)
     account_sid = "ACde1678c7880c7ca7b06306b36071db1f"
     auth_token = '1a5ea517ab694ce60b0010bc4a739d27'
     client = Client(account_sid, auth_token)
@@ -128,17 +159,16 @@ def sendOtp(otp, mobno, rollno):
 def loginView(request):
 
     if request.user.is_authenticated:
-            return redirect('index')
+            return redirect('alumination')
     if request.method == 'POST':
         if 'rollno' in request.session:
                 otp = request.POST.get('otp')
                 print(str(otp))
-                # if (str(otp) == str(request.session['otp'])):
-                if(True) :
+                if (str(otp) == str(request.session['otp'])):
                     user = User.objects.filter(username = request.session['rollno']).first()
                     login(request, user)
                     print("Success")
-                    return render(request, 'index.html')
+                    return render(request, 'alumination.html')
                 else: 
                     context = {'message' : 'Wrong otp'}
                     return render(request, 'login.html', context)                 
@@ -206,24 +236,34 @@ def index(request):
 
 def logoutView(request):
     logout(request)
-    return render(request, 'index.html')
+    return render(request, 'alumination.html')
 
 @login_required(login_url='/login/')
 
-def migd(request):
+def mi_gd(request):
     if request.method == 'POST':
         interest = request.POST.get('interest')
         pref_1 = request.POST.get('pref1')
         pref_2 = request.POST.get('pref2')
         pref_3 = request.POST.get('pref3')
         date = request.POST.get('date')
+        # coreField = request.POST.get('core_field')
+        coreField = "Mech"
         resume = request.FILES['resume']
+        profile = Profile.objects.filter(user=request.user).first()
+        resume.name = f"{profile.rollno}_{profile.name}_{datetime.datetime.now()}.pdf"
 
-        profileRollNo = Profile.objects.filter(user=request.user).first().rollno
-        resume.name = f"{profileRollNo}_{datetime.datetime.now()}.pdf"
+        # migdProfile = migd.objects.filter(rollno=profile.rollno).first()
 
-        register = mi_gd(interest=interest, pref1=pref_1, pref2=pref_2, pref3=pref_3,date=date, resume=resume)
-        register.save()
+        # print(migdProfile)
+
+        # if migdProfile:
+        #     migdProfile.resume.delete()
+        # else :
+        email = str(profile.rollno) + "@iitb.ac.in"
+        migd(rollno=profile.rollno, interest=interest, pref1=pref_1, pref2=pref_2, pref3=pref_3, dateAvailable=date, coreField=coreField , resume=resume).save()
+        createMigdExcel()
+        send_mail("Registration Successful", "You have been successfully registered for Mock Interview & Group Discussion", [email, ], fail_silently=False)
     return render(request, 'mi_gd.html')
 
 # Events + questions
@@ -244,14 +284,14 @@ def bth(request):
     context = {'eventstate' : userevent.beyond_the_horizon }
     return render(request, 'bth.html', context )
 
-def speed_mentoring(request):
+def speedMentoring(request):
     if request.method == 'POST':
         date = request.POST.get('date')
         pref_1 = request.POST.get('pref1')
         pref_2 = request.POST.get('pref2')
-        data = speedm(date=date, pref1=pref_1, pref2=pref_2)
+        data = speedMentoring(date=date, pref1=pref_1, pref2=pref_2)
         data.save()
-    return render(request, 'speed_mentoring.html')
+    return render(request, 'speedMentoring.html')
 
 def group_mentoring(request):
     if request.method == 'POST':
@@ -262,10 +302,12 @@ def group_mentoring(request):
         data.save()
     return render(request, 'group_mentoring.html')
 
-def ceo_connect(request):
+def ceoConnect(request):
     userevent = EventsAttending.objects.filter(roll_no = request.user.username).first()
-    context = {'eventstate' : userevent.ceo_connect }
-    return render(request, 'ceo_connect.html')
+    context = {
+        'eventstate' : userevent.ceo_connect
+    }
+    return render(request, 'ceoConnect.html', context)
 
 def cfc(request):
     userevent = EventsAttending.objects.filter(roll_no = request.user.username).first()
@@ -282,3 +324,6 @@ def eventState(request, event, state):
     userevent = EventsAttending.objects.filter(roll_no = rollno).first()
     setattr(userevent, event, state)
     userevent.save()
+
+def events(request):
+     return render(request, 'events.html')
