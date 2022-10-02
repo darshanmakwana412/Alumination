@@ -1,0 +1,28 @@
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'css/ProfileCard.css' %}">
+
+<div class="card">
+    <div class="left">
+      <i class="fa fa-long-arrow-left"></i>
+      <i class="fa fa-long-arrow-right"></i>
+    </div>
+    <div class="right">
+      <div class="product-info">
+        <div class="product-name">
+          <h1>Profile</h1>
+          <i class="fa fa-search"></i>
+          <i class="fa fa-user"></i>
+          <i class="fa fa-shopping-cart"></i>
+        </div>
+        <div class="details">
+          <h3>{{user.rollno}}</h3>
+          <h2>{{user.name}}</h2>
+          <h4>{{user.department}}</h4>
+          <h4>{{user.p_email}}</h4>
+        </div>
+        <span class="foot">Degree : {{user.degree}}</span>
+        <span class="foot">Contact : {{user.contact}}</span>
+      </div>
+    </div>
+  </div>

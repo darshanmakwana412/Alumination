@@ -1,3 +1,8 @@
+<<<<<<< HEAD
+=======
+from atexit import register
+from email.mime import image
+>>>>>>> 8719d07f1d9c4a70c7f2579312b89c1e3f5d6280
 from email.policy import default
 from django.db import models
 from django.contrib.auth.models import User
@@ -13,6 +18,7 @@ from django.contrib.auth.models import User
 #     def __str__(self):
 #         return self.name
 
+<<<<<<< HEAD
 class migd(models.Model):
     rollno = models.CharField(primary_key=True, max_length=9)
     dateTime = models.DateTimeField(auto_now=True)
@@ -29,6 +35,8 @@ class shadowPrograme(models.Model):
     dateTime = models.DateTimeField(auto_now=True)
     image = models.ImageField(upload_to='paymentProof', blank=True)
 
+=======
+>>>>>>> 8719d07f1d9c4a70c7f2579312b89c1e3f5d6280
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=100, null=True)
@@ -57,7 +65,11 @@ class GroupMentoringTopics(models.Model):
 
  
 class EventsAttending(models.Model):
+<<<<<<< HEAD
     roll_no = models.CharField(primary_key=True, max_length=9)                        #1
+=======
+    roll_no = models.AutoField(primary_key=True)                        #1
+>>>>>>> 8719d07f1d9c4a70c7f2579312b89c1e3f5d6280
     beyond_the_horizon = models.BooleanField(default=False)             #2
     it_software = models.BooleanField(default=False)                     #3
     consulting = models.BooleanField(default=False)                     #4
