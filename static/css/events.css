@@ -54,6 +54,7 @@ body {
   align-items: center;
   flex-wrap: wrap;
   gap: 50px;
+  overflow: hidden;
 }
 
   .card {
@@ -66,8 +67,6 @@ body {
     box-shadow: 0 1px 5px #00000099;
     
     border-radius: 10px;
-    background-image: url(https://images.unsplash.com/photo-1557672199-6e8c8b2b8fff?ixlib=rb-1.2.1&auto=format&fit=crop&w=934&q=80);
-    background-size: cover;
     
     position: relative;
     
@@ -80,6 +79,83 @@ body {
     justify-content: center;
     align-items: center;
     font-size: 50px;
+  }
+
+  .e-shadow {
+    background-image: url('../img/events/SHADOW\ PROGRAM.jpg');
+    background-size: cover;
+  }
+  .e-interviewWorkshop {
+    background-image: url('../img/events/Workshops.jpg');
+    background-size: cover;
+  }
+  .e-migd {
+    background-image: url('../img/events/mi.jpg');
+    background-size: cover;
+  }
+  .e-bti {
+    background-image: url('../img/events/bti.jpg');
+    background-size: cover;
+  }
+  .e-groupm {
+    background-image: url('../img/events/mi.jpg');
+    background-size: cover;
+  }
+  .e-speedm {
+    background-image: url('../img/events/mi.jpg');
+    background-size: cover;
+  }
+  .e-workshop {
+    background-image: url('../img/events/Workshops.jpg');
+    background-size: cover;
+  }
+  .e-networking {
+    background-image: url('../img/events/Networking\ arena.jpg');
+    background-size: cover;
+  }
+  .e-panel {
+    background-image: url('../img/events/Panel\ Discussion.jpg');
+    background-size: cover;
+  }
+  .e-ceo {
+    background-image: url('../img/events/CEO.jpeg');
+    background-size: cover;
+  }
+  .e-game {
+    background-image: url('../img/events/Game\ night.jpg');
+    background-size: cover;
+  }
+  .e-migd {
+    background-image: url('../img/events/mi.jpg');
+    background-size: cover;
+  }
+  .e-bti {
+    background-image: url('../img/events/bti.jpg');
+    background-size: cover;
+  }
+  .e-groupm {
+    background-image: url('../img/events/mi.jpg');
+    background-size: cover;
+  }
+  .e-speedm {
+    background-image: url('../img/events/mi.jpg');
+    background-size: cover;
+  }
+  .e-workshop {
+    background-image: url('../img/events/Workshops.jpg');
+    background-size: cover;
+  }
+  .e-startup {
+    background-image: url('../img/events/startup.jpg');
+    background-size: cover;
+  }
+  .e-cfc {
+    background-image: url('../img/events/CFC.jpg');
+    background-size: cover;
+  }
+  .e-bth {
+    background-image: url('../img/events/BTH\ \(1\).jpg');
+    background-size: cover;
   }
   
   .card:hover {

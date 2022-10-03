@@ -160,7 +160,7 @@ border: 1px solid rgba( 255, 255, 255, 0.18 );
     background: transparent;
     z-index: -1000;
     color: darkblue;
-    padding-top: 100px;
+    padding-top: 70px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -168,9 +168,6 @@ border: 1px solid rgba( 255, 255, 255, 0.18 );
 
 }
 
-.stathead{
-    font-size: 80px;
-}
 .numbers{
     
     background: rgba( 255, 255, 255, 0.25 );
@@ -201,14 +198,34 @@ border: 1px solid rgba( 255, 255, 255, 0.18 );
 .notable{
     width: 100vw;
     height: 100vh;
+    padding-top: 100px;
 }
 .carousel-item{
     overflow: hidden;
+    width: 500px;
+    height: 500px;
 }
 .alumhead{
+    
+    position: relative;
+    background: transparent;
+    z-index: -1000;
+    color: darkblue;
     text-align: center;
-    font-size: 32px;
-    font-weight: bold;
+
+    font-size: 80px;
+    font-family: 'Bebas Neue', cursive;
+}
+
+.stathead{
+    position: relative;
+    background: transparent;
+    z-index: -1000;
+    color: darkblue;
+    text-align: center;
+
+    font-size: 80px;
+    font-family: 'Bebas Neue', cursive;
 }
 
 .sun{
@@ -572,6 +589,9 @@ footer{
     }
 
     .abthead{
+        font-size: 40px;
+    }
+    .alumhead{
         font-size: 40px;
     }
 
