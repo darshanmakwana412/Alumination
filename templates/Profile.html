@@ -4,8 +4,45 @@
 {% block content %}
     
 <link rel="stylesheet" href="{% static 'css/Profile.css' %}">
+<link rel="stylesheet" href="{% static 'css/navbarfooter.css' %}">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/add-to-calendar-button@1/assets/css/atcb.min.css">
+<nav class="laptop">
+  <ul class="1">
+    <a href="#about"><li>About</li></a>
+    <a href="/events"><li>Events</li></a>
+  </ul>
+  <img src="../static/img/alumination/logo.png" alt="" />
+  <ul class="2">
+    <a href="#alum"><li>Alumni</li></a>
+    <a href="/profile/"><li>Profile</li></a>
+  </ul>
+</nav>
 
+<nav class="mobile">
+  <img src="../static/img/alumination/logo.png" alt="" srcset="" />
+  <div id="hamburger">
+    <svg width="70" height="70" viewBox="0 0 100 100">
+      <path
+        class="line line1"
+        d="M 20,29.000046 H 80.000231 C 80.000231,29.000046 94.498839,28.817352 94.532987,66.711331 94.543142,77.980673 90.966081,81.670246 85.259173,81.668997 79.552261,81.667751 75.000211,74.999942 75.000211,74.999942 L 25.000021,25.000058"
+      />
+      <path class="line line2" d="M 20,50 H 80" />
+      <path
+        class="line line3"
+        d="M 20,70.999954 H 80.000231 C 80.000231,70.999954 94.498839,71.182648 94.532987,33.288669 94.543142,22.019327 90.966081,18.329754 85.259173,18.331003 79.552261,18.332249 75.000211,25.000058 75.000211,25.000058 L 25.000021,74.999942"
+      />
+    </svg>
+  </div>
+</nav>
+
+<div id="overlay">
+  <ul>
+    <a href="#about"><li>About</li></a>
+    <a href="/events"><li>Events</li></a>
+    <a href="#alum"><li>Alumni</li></a>
+    <a href="/profile/"><li>Profile</li></a>
+  </ul>
+</div>
   {% include 'ProfileCard.html' %}
 
   <div class="container">
@@ -56,5 +93,5 @@
   </div>
 
 <script src="https://cdn.jsdelivr.net/npm/add-to-calendar-button@1" async defer></script>
-
+<script src="../static/js/navbarfooter.js"></script>
 {% endblock %}

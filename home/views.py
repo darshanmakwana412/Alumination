@@ -14,78 +14,81 @@ eventsData = {
     "beyond_the_horizon": {
         "name": "Beyond The Horizon",
         "status": 0,
-        "image": "../static/img/events/2.1.jpg",
+        "image": "../static/img/events/BTH (1).jpg",
     },
     "it_software": {
-        "name": "Beyond The Horizon",
+        "name": "Workshop IT/Software",
         "status": 0,
-        "image": "../static/img/events/2.1.jpg",
+        "image": "../static/img/events/Workshops.jpg",
     },
     "consulting": {
-        "name": "Beyond The Horizon",
+        "name": "Workshop Consulting",
         "status": 0,
-        "image": "../static/img/events/2.1.jpg",
+        "image": "../static/img/events/Workshops.jpg",
     },
     "analytics": {
-        "name": "Beyond The Horizon",
+        "name": "Workshop Analytics",
         "status": 0,
-        "image": "../static/img/events/2.1.jpg",
+        "image": "../static/img/events/Workshops.jpg",
     },
     "quant": {
-        "name": "Beyond The Horizon",
+        "name": "Workshop Quant",
         "status": 0,
-        "image": "../static/img/events/2.1.jpg",
+        "image": "../static/img/events/Workshops.jpg",
     },
     "hr": {
-        "name": "Beyond The Horizon",
+        "name": "Workshop HR",
         "status": 0,
-        "image": "../static/img/events/2.1.jpg",
+        "image": "../static/img/events/Workshops.jpg",
     },
     "product_management": {
-        "name": "Beyond The Horizon",
+        "name": "Workshop Product Management",
         "status": 0,
-        "image": "../static/img/events/2.1.jpg",
+        "image": "../static/img/events/Workshops.jpg",
     },
     "standup": {
-        "name": "Beyond The Horizon",
+        "name": "Standup",
         "status": 0,
         "image": "../static/img/events/2.1.jpg",
     },
     "game_night": {
-        "name": "Beyond The Horizon",
+        "name": "Game Night",
         "status": 0,
         "image": "../static/img/events/2.1.jpg",
     },
-    "student_alumni_mentorship": {
-        "name": "Beyond The Horizon",
-        "status": 0,
-        "image": "../static/img/events/2.1.jpg",
-    },
+    
     "coming_full_circle": {
-        "name": "Beyond The Horizon",
+        "name": "Coming Full Circle",
         "status": 0,
         "image": "../static/img/events/2.1.jpg",
     },
-    "ypo": {
-        "name": "Beyond The Horizon",
-        "status": 0,
-        "image": "../static/img/events/2.1.jpg",
-    },
-    "tedx": {
-        "name": "Beyond The Horizon",
-        "status": 0,
-        "image": "../static/img/events/2.1.jpg",
-    },
+    
     "ceo_connect": {
-        "name": "Beyond The Horizon",
+        "name": "CEO Connect",
         "status": 0,
         "image": "../static/img/events/2.1.jpg",
     },
     "speed_mentoring": {
-        "name": "Beyond The Horizon",
+        "name": "Speed Mentoring",
         "status": 0,
         "image": "../static/img/events/2.1.jpg",
-    }
+    },
+    "student_alumni_mentorship": {
+        "name": "Speed Mentoring",
+        "status": 0,
+        "image": "../static/img/events/2.1.jpg",
+    },
+    "ypo": {
+        "name": "Speed Mentoring",
+        "status": 0,
+        "image": "../static/img/events/2.1.jpg",
+    },
+    "tedx": {
+        "name": "Speed Mentoring",
+        "status": 0,
+        "image": "../static/img/events/2.1.jpg",
+    },
+    
 }
 
 def createMigdExcel():
