@@ -4,7 +4,7 @@ from . import views
 urlpatterns = [
     path('shadowProgram/', views.shadowProgram, name="shadowProgram"),
     path('profile/', views.profile, name="profile"),
-    path('index/', views.index, name="index"),
+    # path('index/', views.index, name="index"),
     path('login/', views.loginView, name="login"),
     path('register/', views.registerView, name='register'),
     path('logout', views.logoutView, name="logout"),
@@ -18,6 +18,6 @@ urlpatterns = [
     path('coming_full_circle', views.cfc, name="coming_full_circle"),
     path('game_night', views.game_night, name="game_night"),
     path('eventState/<event>/<state>', views.eventState, name="eventState"),
-    path('', views.index, name="teampage"),
+    path('', views.index, name="home"),
     path('events', views.events, name="events")
 ]

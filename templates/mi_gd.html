@@ -4,110 +4,215 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Document</title>
     <link rel="stylesheet" href="../static/css/mi_gd.css">
-    <title>MI/GD</title>
+    <link rel="stylesheet" href="../static/css/navbarfooter.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
-<body style="background: url('mock_interview.jpeg'); background-size: cover;">
-    <div class="eventhead" id="phonehead">
-        <div class="container">
-            <h1 class="black">Mock Interview & Group Discussions</h1>
+<body>
 
+    <nav class="laptop">
+        <ul class="1">
+          <a href="/#about"><li>About</li></a>
+          <a href="/events"><li>Events</li></a>
+        </ul>
+        <img src="../static/img/alumination/logo.png" alt="" />
+        <ul class="2">
+          <a href="#alum"><li>Alumni</li></a>
+          <a href="/profile/"><li>Profile</li></a>
+        </ul>
+      </nav>
+  
+      <nav class="mobile">
+        <img src="../static/img/alumination/logo.png" alt="" srcset="" />
+        <div id="hamburger">
+          <svg width="70" height="70" viewBox="0 0 100 100">
+            <path
+              class="line line1"
+              d="M 20,29.000046 H 80.000231 C 80.000231,29.000046 94.498839,28.817352 94.532987,66.711331 94.543142,77.980673 90.966081,81.670246 85.259173,81.668997 79.552261,81.667751 75.000211,74.999942 75.000211,74.999942 L 25.000021,25.000058"
+            />
+            <path class="line line2" d="M 20,50 H 80" />
+            <path
+              class="line line3"
+              d="M 20,70.999954 H 80.000231 C 80.000231,70.999954 94.498839,71.182648 94.532987,33.288669 94.543142,22.019327 90.966081,18.329754 85.259173,18.331003 79.552261,18.332249 75.000211,25.000058 75.000211,25.000058 L 25.000021,74.999942"
+            />
+          </svg>
         </div>
+      </nav>
+  
+      <div id="overlay">
+        <ul>
+          <a href="/#about"><li>About</li></a>
+          <a href="/events"><li>Events</li></a>
+          <a href="#alum"><li>Alumni</li></a>
+          <a href="/profile/"><li>Profile</li></a>
+        </ul>
+      </div>
+
+      <div class="regmodal" id="openModel">
+        <h1 class="modal_title">MI/GD Registration</h1>
+                  <form method="post" enctype="multipart/form-data">
+                    {%csrf_token%}
+                  <select name="interest" id="interest">
+                      <option value="">Select Interest</option>
+                      <option value="Mock Interview">Mock Interview</option>
+                      <option value="Group Discussion">Group Discussion</option>
+                      <option value="Both">Both</option>
+                  </select>
+                  <select name="date" id="date">
+                      <option value="">Select Date</option>
+                      <option value="15th October">15th October</option>
+                      <option value="16th October">16th October</option>
+                      <option value="Any Day Works">Any Day Works</option>
+                  </select>
+                  <select name="pref1" id="pref1">
+                      <option value="">Select Pref1</option>
+                      <option value="Consulting + HR">Consulting + HR</option>
+                      <option value="Finance + HR">Finance + HR</option>
+                      <option value="Analytics + HR">Analytics + HR</option>
+                      <option value="Core + HR">Core + HR</option>
+                      <option value="Software + HR">Software + HR</option>
+                      <option value="Product Management + HR">Product Management + HR</option>
+                      <option value="HR">HR</option>
+                  </select>
+                  <select name="pref2" id="pref2">
+                      <option value="">Select Pref2</option>
+                      <option value="Consulting + HR">Consulting + HR</option>
+                      <option value="Finance + HR">Finance + HR</option>
+                      <option value="Analytics + HR">Analytics + HR</option>
+                      <option value="Core + HR">Core + HR</option>
+                      <option value="Software + HR">Software + HR</option>
+                      <option value="Product Management + HR">Product Management + HR</option>
+                      <option value="HR">HR</option>
+                  </select>
+                  <select name="pref3" id="pref3">
+                      <option value="">Select Pref3</option>
+                      <option value="Consulting + HR">Consulting + HR</option>
+                      <option value="Finance + HR">Finance + HR</option>
+                      <option value="Analytics + HR">Analytics + HR</option>
+                      <option value="Core + HR">Core + HR</option>
+                      <option value="Software + HR">Software + HR</option>
+                      <option value="Product Management + HR">Product Management + HR</option>
+                      <option value="HR">HR</option>
+                  </select>
+
+                  <input type="text" name="core_field" id="coresub" class="core" placeholder="Core Subfield">
+
+                  <div id="resumelabel">Resume:</div><input type="file" name="resume" id="resume" required />
+
+                  <button type="submit" class="submit custom-btn btn-8">SUBMIT</button>
+                  <a href="#" class="closebtn custom-btn btn">CLOSE</a>
+                
+                  
+
+              </form>
+             
+              
     </div>
 
+    
 
-    <div class="infosec">
-        <div style="color: white;" class="infotext">
-        Strengthen and escalate your placement prep like never before! With their immense knowledge and extensive experience, our alumni will be guiding you so that you can excel and emerge triumphant in the coming placement season.
-        </div>
-
-
-        <div class="infographics">
-            <div class="datentime">
-                <div class="date">
-                    <i class="fa fa-3x fa-calendar"></i> <p><span class="counter" data-count="15"></span> / <span class="counter" data-count="10"></span> / <span class="counter" data-count="2022"></span></p>
+    <div class="globalcontainer">
+   
+         <div class="maininfo">
+            <div class="texual">
+                <p class="headtext">Mock Interview & <br>Group Discussion</p>
+                <p class="desctext">Strengthen and escalate your placement prep like never before! With their immense knowledge and extensive experience, our alumni will be guiding you so that you can excel and emerge triumphant in the coming placement season.</p>
+                <a href="#openModel"><button class="custom-btn btn-8"><span>Register</span></button></a>
+                <div class="infocards">
+                    <div class="card datecard">
+                        <div class="card__title">
+                            Date
+                        </div>
+                        <div class="card__description">
+                            2 October, 2022
+                        </div>
+                    </div>
+                    <div class="card datecard">
+                        <div class="card__title">
+                            Time
+                        </div>
+                        <div class="card__description">
+                            6:00 PM
+                        </div>
+                    </div>
+                    <div class="card datecard">
+                        <div class="card__title">
+                            Venue
+                        </div>
+                        <div class="card__description">
+                            Nag Auditorium
+                        </div>
+                    </div>
                 </div>
-                <div class="time"><i class="fa fa-3x fa-clock-o"></i> <p><span class="counter" data-count="4">0</span> : <span class="counter" data-count="30">0</span></p> </div>
             </div>
-            <div class="venue"><div><i class="fa fa-3x fa-map-marker"></i></div> <p>Venue</p> </div>
-        </div>
+            <div class="fillerimg">
+                <img src="../static/img/banner-img.png" alt="" srcset="">
+            </div>
+         </div>
+    
+        
+
+
     </div>
 
-        <div class="togglearea">
-            <div class="box">
-                <a href="#m1-o" class="learn-more" id="reg">Register</a>
-          
-             <div class="modal-container" id="m1-o" style="--m-background: transparent;">
-              <div class="modal">
-                 <center><h1 class="modal__title">MI/GD Registration</h1></center>
-                 <p class="modal__text">
-<center>
-                    <form method="post" enctype="multipart/form-data">
-                        {% csrf_token %}
-                    <select name="interest" id="interest">
-                        <option value="">Select Interest</option>
-                        <option value="Mock Interview">Mock Interview</option>
-                        <option value="Group Discussion">Group Discussion</option>
-                        <option value="Both">Both</option>
-                    </select><br><br>
-                    <select name="date" id="date">
-                        <option value="">Select Date</option>
-                        <option value="15th October">15th October</option>
-                        <option value="16th October">16th October</option>
-                        <option value="Any Day Works">Any Day Works</option>
-                    </select><br><br>
-                    <select name="pref1" id="pref1">
-                        <option value="">Select Pref1</option>
-                        <option value="Consulting + HR">Consulting + HR</option>
-                        <option value="Finance + HR">Finance + HR</option>
-                        <option value="Analytics + HR">Analytics + HR</option>
-                        <option value="Core + HR">Core + HR</option>
-                        <option value="Software + HR">Software + HR</option>
-                        <option value="Product Management + HR">Product Management + HR</option>
-                        <option value="HR">HR</option>
-                    </select><br><br>
-                    <select name="pref2" id="pref2">
-                        <option value="">Select Pref2</option>
-                        <option value="Consulting + HR">Consulting + HR</option>
-                        <option value="Finance + HR">Finance + HR</option>
-                        <option value="Analytics + HR">Analytics + HR</option>
-                        <option value="Core + HR">Core + HR</option>
-                        <option value="Software + HR">Software + HR</option>
-                        <option value="Product Management + HR">Product Management + HR</option>
-                        <option value="HR">HR</option>
-                    </select><br><br>
-                    <select name="pref3" id="pref3">
-                        <option value="">Select Pref3</option>
-                        <option value="Consulting + HR">Consulting + HR</option>
-                        <option value="Finance + HR">Finance + HR</option>
-                        <option value="Analytics + HR">Analytics + HR</option>
-                        <option value="Core + HR">Core + HR</option>
-                        <option value="Software + HR">Software + HR</option>
-                        <option value="Product Management + HR">Product Management + HR</option>
-                        <option value="HR">HR</option>
-                    </select>
-                    <input type="text" name="core_field" id="coresub" class="core" placeholder="Core Subfield">
-                    <div id="resumelabel">Resume:</div>
-                  <center>  <input type="file" name="resume" id="resume" required /></center>
-                    <br><br>
-                    <button type="submit" class="submit">SUBMIT</button>
-                </form>
-            </center>
-                <a href="#m1-c" class="link-2"></a>
-              </div>
-            </div>
+    <footer>
+        <div class="footlogo">
+          <img src="../static/img/alumination/logo.png" alt="" />
+        </div>
+  
+        <div class="acrinfo">
+          <div class="footheads">Head Office</div>
+          <p class="acraddr">
+            Dean Alumni and Corporate Relations Office<br />
+            Dean ACR, Main Building, <br>First Floor, IIT Bombay, <br>Powai Mumbai <br>
+            400076, INDIA
+          </p>
+          <p class="acrcontact">
+            <p class="acrcontacthead">
+              dean.acr.office@iitb.ac.in
+            </p>
+            <p class="acrcontactnum">
+              9122-2576-4889<br>
+  2576-7023
+            </p>
+          </p>
+        </div>
+  
+        <div class="usefullinks">
+          <div class="footheads">Useful Links</div>
+          <ul>
+            <a href="#about"><li>About</li></a>
+            <a href="/events"><li>Events</li></a>
+            <a href="#alum"><li>alumni</li></a>
+            <a href="/profile/"><li>Profile</li></a>
+            <a href="https://alumni.acr.iitb.ac.in/newsletters/"><li>Newsletter</li></a>
+          </ul>
+        </div>
+  
+        <div class="newsletter">
+          <!-- <div class="footheads"></div>
+          <form action="" method="post">
+            <input type="text" class="query" name="">
+            <button>Submit</button>
+          </form> -->
+          <div class="sociallinks">
+            <ul>
+              <a href="https://www.instagram.com/sarc_iitb/"><li><i class="fa fa-2x fa-instagram"></i></li></a>
+              <a href="https://www.facebook.com/SARC.IITB/"><li><i class="fa fa-2x fa-facebook"></i></li></a>
+            </ul>
+  
+            <ul>
+              <a href="https://in.linkedin.com/in/sarciitb"><li><i class="fa fa-2x fa-linkedin"></i></li></a>
+              <a href="https://twitter.com/sarc_iitb?lang=en"><li><i class="fa fa-2x fa-twitter"></i></li></a>
           </div>
         </div>
-    <script src="../static/js/mi_gd.js"></script>
-    <!-- <script>
-        if(document.getElementById('pref1').value=='Core + HR' || document.getElementById('pref2').value=='Core + HR' || document.getElementById('pref3').value=='Core + HR'){
-             document.getElementById('text').style.display = "block"
-        }
-    </script> -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.3/plugins/CSSPlugin.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.3/easing/EasePack.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.3/TweenLite.min.js"></script>
+      </footer>
+
+
+
+
+<script src="../static/js/mi_gd.js"></script>
+<script src="../static/js/navbarfooter.js"> </script>
 </body>
 </html>
